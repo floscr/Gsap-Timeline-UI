@@ -15,13 +15,13 @@ class Timeline {
     this.startScrubbing = this.startScrubbing.bind(this);
     this.stopScrubbing = this.stopScrubbing.bind(this);
     this.scrubTo = this.scrubTo.bind(this);
+    this.mouseLeavesWindow = this.mouseLeavesWindow.bind(this);
 
     this.startX = 0;
     this.currentX = 0;
 
     this.createUi();
     this.addEventListeners();
-
   }
 
   createUi() {
@@ -31,6 +31,14 @@ class Timeline {
 
   addEventListeners() {
     this.elements.container.addEventListener('mousedown', this.startScrubbing);
+  }
+
+  mouseLeavesWindow(evt) {
+    let fromTarget = evt.relatedTarget || evt.toElement;
+    if (!fromTarget || fromTarget.nodeName === 'HTML') {
+      this.stopScrubbing();
+      this.activeTimeline.pause();
+    };
   }
 
   scrubTo(evt) {
@@ -47,6 +55,7 @@ class Timeline {
     document.body.removeEventListener('mouseup', this.stopScrubbing);
     document.body.removeEventListener('mousemove', this.scrubTo);
     this.elements.container.addEventListener('mousedown', this.startScrubbing);
+    document.removeEventListener('mouseout', this.mouseLeavesWindow);
 
     document.body.style.cursor = 'default';
     if (this.wasPlaying) {
@@ -58,24 +67,13 @@ class Timeline {
     this.elements.container.removeEventListener('mousedown', this.startScrubbing);
     document.body.addEventListener('mouseup', this.stopScrubbing);
     document.body.addEventListener('mousemove', this.scrubTo);
+    document.addEventListener('mouseout', this.mouseLeavesWindow);
 
     document.body.style.cursor = 'ew-resize';
     // $timeline.classList.add(timelineScrubbingClass);
 
     this.wasPlaying = !this.activeTimeline.paused();
     this.activeTimeline.pause();
-
-    // // Stop scrubbing when the mouse leaves the window
-    // document.addEventListener('mouseout', function(e) {
-    //   var fromTarget = e.relatedTarget || e.toElement;
-    //   if (!fromTarget || fromTarget.nodeName === 'HTML') {
-    //     $timeline.removeEventListener('mouseup');
-    //     e.target.removeEventListener('mouseout');
-    //     stopScrubbing();
-    //     tl.pause();
-    //   };
-    // }, false)
-
   }
 
 
