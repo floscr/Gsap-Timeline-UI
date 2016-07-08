@@ -30,7 +30,10 @@ $color-secondary: $blue;
 
 $color-cursor: $blue;
 
-$color-ui-bg: darken($bluegrey-90, 10%);
+$color-ui-bg: darken($bluegrey-90, 5%);
+$color-ui-font-color: white;
+$color-ui-border: rgba($bluegrey-10, 0.5);
+$color-ui-btn-hover: rgba($bluegrey-10, 0.23);
 
 $color-timeline-track-bg: $bluegrey-90;
 $color-timeline-track: $bluegrey-10;
