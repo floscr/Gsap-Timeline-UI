@@ -28,7 +28,11 @@ export default class GsapUi {
 
     this.createNode();
     this.components.timeline = new Timeline(this.elements.container, this.activeTimeline);
+    // this.components.buttons = new Buttons(this.elements.container, this.activeTimeline);
     this.addEventListeners();
+
+    this.activeTimeline.pause();
+    this.activeTimeline.progress(0.5);
   }
 
   createNode() {
