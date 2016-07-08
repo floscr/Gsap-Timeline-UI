@@ -51,14 +51,12 @@ class Timeline {
     this.elements.container.removeEventListener('mousedown', this.startScrubbing);
     document.body.addEventListener('mouseup', this.stopScrubbing);
     document.body.addEventListener('mousemove', this.scrubTo);
-    // $timeline.classList.add(timelineScrubbingClass);
-    // this.elements.addEventListener('mouseup', stopScrubbing, false);
+
     document.body.style.cursor = 'ew-resize';
+    // $timeline.classList.add(timelineScrubbingClass);
 
     this.wasPlaying = !this.activeTimeline.paused();
     this.activeTimeline.pause();
-    // mouseIsDown = true;
-    // mouseMove(e);
 
     // // Stop scrubbing when the mouse leaves the window
     // document.addEventListener('mouseout', function(e) {
