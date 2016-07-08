@@ -3,6 +3,7 @@ import WebFont from 'webfontloader';
 
 // Components
 import Timeline from './components/Timeline.js';
+import ButtonUi from './components/ButtonUi.js';
 
 // Styles and templates
 import template from '../templates/ui.jade';
@@ -31,7 +32,7 @@ export default class GsapUi {
 
     this.createNode();
     this.components.timeline = new Timeline(this.elements.container, this.activeTimeline);
-    // this.components.buttons = new Buttons(this.elements.container, this.activeTimeline);
+    this.components.buttonUi = new ButtonUi(this.elements.container, this.activeTimeline);
     this.addEventListeners();
 
     this.activeTimeline.pause();
