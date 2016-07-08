@@ -22,4 +22,4 @@ tl
   })
 ;
 
-new window.GsapUi();
+new window.GsapUi(tl);
