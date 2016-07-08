@@ -26,12 +26,15 @@ class Timeline {
   }
 
   createUi() {
+    // TODO: Why does this need a [0] ?
+    this.elements.timeline =
+      this.elements.container.getElementsByClassName('gsapui--timeline')[0];
     this.elements.track =
       this.elements.container.getElementsByClassName('gsapui--timeline--track');
   }
 
   addEventListeners() {
-    this.elements.container.addEventListener('mousedown', this.startScrubbing);
+    this.elements.timeline.addEventListener('mousedown', this.startScrubbing);
   }
 
   mouseLeavesWindow(evt) {
@@ -45,13 +48,13 @@ class Timeline {
   scrubTo(evt) {
     let parentPosition = returnElementOffset(evt.currentTarget);
     let xPosition = evt.clientX - parentPosition.x;
-    tl.progress(xPosition / this.elements.container.offsetWidth);
+    tl.progress(xPosition / this.elements.timeline.offsetWidth);
   }
 
   stopScrubbing(evt) {
     document.body.removeEventListener('mouseup', this.stopScrubbing);
     document.body.removeEventListener('mousemove', this.scrubTo);
-    this.elements.container.addEventListener('mousedown', this.startScrubbing);
+    this.elements.timeline.addEventListener('mousedown', this.startScrubbing);
     document.removeEventListener('mouseout', this.mouseLeavesWindow);
     clearTimeout(this.cursorChangeTimeOut);
 
@@ -67,7 +70,7 @@ class Timeline {
   }
 
   startScrubbing(evt) {
-    this.elements.container.removeEventListener('mousedown', this.startScrubbing);
+    this.elements.timeline.removeEventListener('mousedown', this.startScrubbing);
     document.body.addEventListener('mouseup', this.stopScrubbing);
     document.body.addEventListener('mousemove', this.scrubTo);
     document.addEventListener('mouseout', this.mouseLeavesWindow);
