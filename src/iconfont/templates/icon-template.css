@@ -1,0 +1,39 @@
+@font-face {
+  font-family: "<%= fontName %>";
+  src: url('<%= fontPath %>icons.woff') format('woff'),
+       url('<%= fontPath %><%= fontName %>.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+%<%= className %> {
+  display: inline-block;
+  vertical-align: middle;
+  font-family: "<%= fontName %>";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  line-height: 1;
+  text-decoration: inherit;
+  text-transform: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 15px;
+}
+
+.<%= className %>-left:before {
+  @extend %<%= className %>
+}
+
+.<%= className %>-right:after {
+  @extend %<%= className %>
+}
+
+<% _.each(glyphs, function(glyph) { %>%<%= className %>-<%= glyph.name %> { content: "\<%= glyph.unicode[0].charCodeAt(0).toString(16) %>" }
+<% }); %>
+
+<% _.each(glyphs, function(glyph) { %>.icon-left.<%= className %>-<%= glyph.name %>:before { @extend %<%= className %>-<%= glyph.name %> }
+<% }); %>
+<% _.each(glyphs, function(glyph) { %>.icon-right.<%= className %>-<%= glyph.name %>:after { @extend %<%= className %>-<%= glyph.name %> }
+<% }); %>

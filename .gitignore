@@ -1,0 +1,7 @@
+dst/
+final/
+bower_components
+test/assets/
+test/assets/
+.eslintrc_files
+_icons-generated.scss
