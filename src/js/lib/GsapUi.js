@@ -1,3 +1,7 @@
+// Components
+import Timeline from './components/Timeline.js';
+
+// Styles and templates
 import template from '../templates/ui.jade';
 import styles from '../../scss/gsapui.scss';
 
@@ -9,8 +13,8 @@ export default class GsapUi {
     };
 
     this.elements = {};
-
     this.timelines = [];
+    this.components = {};
 
     // Accept single and multiple timeline objects
     if (timelines instanceof Array) {
@@ -34,6 +38,8 @@ export default class GsapUi {
     containerEl.innerHTML = template();
     this.config.rootElement.appendChild(containerEl);
     this.elements.container = containerEl;
+
+    this.components.timeline = new Timeline();
   }
 
   addEventListeners() {
@@ -42,6 +48,8 @@ export default class GsapUi {
   }
 
   update() {
+    this.components.timeline.progress = this.activeTimeline.progress();
+    this.components.timeline.update();
   }
 
 };
