@@ -28,6 +28,7 @@ module.exports = function(config) {
   const babelify = require('babelify');
   const jadeify  = require('jadeify');
   const sassify  = require('sassify');
+  const shim     = require('browserify-shim');
   const watchify = require('watchify');
 
   let paths = config.paths.js;
@@ -66,6 +67,7 @@ module.exports = function(config) {
           base64Encode: false,
           sourceMap: false
         });
+        b.transform(shim);
 
         const build = function() {
           let filename = path.basename(entry);
@@ -73,7 +75,6 @@ module.exports = function(config) {
           return b.bundle()
             .on('error', error => {
               util.log(util.colors.red(`Error: ${error}`));
-              browserSync.notify(err.message, 3000);
             })
             .on('end', () => {
               util.log('Updating ' + util.colors.green(filename));

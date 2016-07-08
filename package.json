@@ -6,6 +6,9 @@
   "directories": {
     "test": "test"
   },
+  "browserify-shim": {
+    "TweenMax": "global:TweenMax"
+  },
   "scripts": {
     "test": "gulp test"
   },
@@ -33,6 +36,7 @@
     "babelify": "^7.2.0",
     "browser-sync": "^2.9.6",
     "browserify": "^11.2.0",
+    "browserify-shim": "^3.8.12",
     "del": "^2.0.2",
     "event-stream": "^3.3.2",
     "glob": "^5.0.14",
