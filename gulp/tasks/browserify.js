@@ -15,12 +15,13 @@ module.exports = function(config) {
   const path       = require('path');
 
   // Tasks
-  const browserify = require('browserify');
-  const es         = require('event-stream');
-  const source     = require('vinyl-source-stream');
-  const buffer     = require('vinyl-buffer');
-  const reload     = require('browser-sync').reload;
-  const sourcemaps = require('gulp-sourcemaps');
+  const browserify  = require('browserify');
+  const es          = require('event-stream');
+  const source      = require('vinyl-source-stream');
+  const buffer      = require('vinyl-buffer');
+  const browserSync = require('browser-sync');
+  const reload      = browserSync.reload;
+  const sourcemaps  = require('gulp-sourcemaps');
 
   // Transforms
   const uglify   = require('gulp-uglify');
