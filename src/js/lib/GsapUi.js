@@ -1,3 +1,6 @@
+// Packages
+import WebFont from 'webfontloader';
+
 // Components
 import Timeline from './components/Timeline.js';
 
@@ -43,6 +46,11 @@ export default class GsapUi {
     containerEl.innerHTML = template();
     this.config.rootElement.appendChild(containerEl);
     this.elements.container = containerEl;
+    WebFont.load({
+      google: {
+        families: ['Material Icons'],
+      },
+    })
   }
 
   addEventListeners() {
