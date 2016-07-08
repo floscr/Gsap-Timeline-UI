@@ -1,5 +1,31 @@
-$red: #F44336;
-$turquoise: #3FB8AF;
+/*--------------------------------------------------------*\
+ * Base Colors
+ *--------------------------------------------------------*/
 
-$primary: $turquoise;
-$cursorColor: $red;
+// Theme Colors
+$green: #42A942;
+$green-10: #2A963E;
+$red: #DA0000;
+$blue: #16649A;
+
+// Black & White
+$white: white;
+$black: #454545;
+
+// Blue Grey Shades
+$bluegrey-10: #99A2AF;
+$bluegrey-15: #99A2AE;
+$bluegrey-70: #2E3840;
+$bluegrey-90: #222C33;
+
+$turquoise: #7AC5C7;
+
+/*--------------------------------------------------------*\
+ * Color access variables
+ *--------------------------------------------------------*/
+
+// Default Colors
+$color-primary: $green;
+$color-secondary: $blue;
+
+$color-cursor: $blue;

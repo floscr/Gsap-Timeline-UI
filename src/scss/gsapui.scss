@@ -1,10 +1,11 @@
 @import 'core/colors';
 
 .gsapui {
-  position: absolute;
-  width: 100%;
+  position: fixed;
+  bottom: 0;
+  right: 0;
   left: 0;
-  bottom: 0px;
+
   font-family: 'Open Sans';
   background: rgba(black, 0.85);
   font-size: 0.8em;
@@ -80,7 +81,7 @@
     width: 100%;
     transform-origin: left top;
     pointer-events: none;
-    background-color: $primary;
+    background-color: $color-primary;
   }
 
   &--cursor {
@@ -88,7 +89,7 @@
     left: 0;
     height: 100%;
     width: 1px;
-    background-color: $cursorColor;
+    background-color: $color-cursor;
   }
 
   &--totalTime {
