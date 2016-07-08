@@ -39,8 +39,7 @@ export default class GsapUi {
     this.config.rootElement.appendChild(containerEl);
     this.elements.container = containerEl;
 
-
-    this.components.timeline = new Timeline(containerEl);
+    this.components.timeline = new Timeline(containerEl, this.activeTimeline);
   }
 
   addEventListeners() {
