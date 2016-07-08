@@ -20,6 +20,7 @@ module.exports = function(config) {
   const source     = require('vinyl-source-stream');
   const buffer     = require('vinyl-buffer');
   const reload     = require('browser-sync').reload;
+  const sourcemaps = require('gulp-sourcemaps');
 
   // Transforms
   const uglify   = require('gulp-uglify');
@@ -78,13 +79,13 @@ module.exports = function(config) {
             })
             .pipe(source(filename))
 
+            .pipe(buffer())
+            .pipe(sourcemaps.init({loadMaps: true})) // loads map from browserify file
+
             .pipe(gulpif(config.production, pipe(
-              buffer(),
               uglify()
             )))
-
-            // .pipe(sourcemaps.init({ loadMaps: true }))
-            // .pipe(sourcemaps.write('./'))
+            .pipe(sourcemaps.write('./')) // writes .map file
 
             .pipe(gulp.dest(paths.dst))
 
