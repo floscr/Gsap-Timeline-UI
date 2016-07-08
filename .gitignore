@@ -1,7 +1,7 @@
 dst/
 final/
 bower_components
-test/assets/
-test/assets/
+test/assets/js/gsapui.js
+*.map
 .eslintrc_files
 _icons-generated.scss
