@@ -1,4 +1,5 @@
 import TweenMax from 'TweenMax';
+import returnElementOffset from '../utils/returnElementOffset.js';
 
 class Timeline {
 
@@ -33,7 +34,13 @@ class Timeline {
   }
 
   scrubTo(evt) {
-
+    if (this.currentX !== evt.clientX) {
+      let parentPosition = returnElementOffset(evt.currentTarget);
+      let xPosition = evt.clientX - parentPosition.x;
+      // cursor.updatePosition(xPosition);
+      tl.progress(xPosition / this.elements.container.offsetWidth);
+    };
+    this.currentX = evt.clientX;
   }
 
   stopScrubbing(evt) {
