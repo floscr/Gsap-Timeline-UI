@@ -26,11 +26,12 @@ export default class GsapUi {
     // Set the first timeline as the active timeline
     this.activeTimeline = this.timelines[0];
 
-    this.createUi();
+    this.createNode();
+    this.components.timeline = new Timeline(this.elements.container, this.activeTimeline);
     this.addEventListeners();
   }
 
-  createUi() {
+  createNode() {
     // Create container element from jade template
     let containerEl = document.createElement('div');
     containerEl.id = 'gsapui';
@@ -38,8 +39,6 @@ export default class GsapUi {
     containerEl.innerHTML = template();
     this.config.rootElement.appendChild(containerEl);
     this.elements.container = containerEl;
-
-    this.components.timeline = new Timeline(containerEl, this.activeTimeline);
   }
 
   addEventListeners() {
