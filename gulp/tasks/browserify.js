@@ -22,13 +22,13 @@ module.exports = function(config) {
   const reload     = require('browser-sync').reload;
 
   // Transforms
-  const uglify     = require('gulp-uglify');
-  const babelify   = require('babelify');
-  const jadeify   = require('jadeify');
-  const watchify   = require('watchify');
+  const uglify   = require('gulp-uglify');
+  const babelify = require('babelify');
+  const jadeify  = require('jadeify');
+  const sassify  = require('sassify');
+  const watchify = require('watchify');
 
-  // Path variable
-  let paths      = config.paths.js;
+  let paths = config.paths.js;
 
   /*-------------------------------------------------------*\
   * Task
@@ -59,6 +59,11 @@ module.exports = function(config) {
 
         b.transform(babelify);
         b.transform(jadeify);
+        b.transform(sassify, {
+          'auto-inject': true,
+          base64Encode: false,
+          sourceMap: false
+        });
 
         const build = function() {
           let filename = path.basename(entry);
@@ -66,15 +71,20 @@ module.exports = function(config) {
           return b.bundle()
             .on('error', error => {
               util.log(util.colors.red(`Error: ${error}`));
+              browserSync.notify(err.message, 3000);
             })
             .on('end', () => {
               util.log('Updating ' + util.colors.green(filename));
             })
             .pipe(source(filename))
+
             .pipe(gulpif(config.production, pipe(
               buffer(),
               uglify()
             )))
+
+            // .pipe(sourcemaps.init({ loadMaps: true }))
+            // .pipe(sourcemaps.write('./'))
 
             .pipe(gulp.dest(paths.dst))
 
