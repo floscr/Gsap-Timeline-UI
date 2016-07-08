@@ -1,5 +1,7 @@
+import template from '../templates/ui.jade';
+
 export default class GsapUi {
-  construct() {
-    console.log('Class init!');
+  constructor() {
+    document.body.innerHTML += template({ name: 'World!' });
   }
 };

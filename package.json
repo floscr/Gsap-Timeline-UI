@@ -60,6 +60,7 @@
     "gulp-uglify": "^1.4.1",
     "gulp-util": "^3.0.6",
     "handlebars": "^4.0.5",
+    "jadeify": "^4.6.0",
     "jshint-stylish": "^2.0.1",
     "lodash": "^3.10.1",
     "multipipe": "^0.1.2",

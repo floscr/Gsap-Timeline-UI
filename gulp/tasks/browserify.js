@@ -24,6 +24,7 @@ module.exports = function(config) {
   // Transforms
   const uglify     = require('gulp-uglify');
   const babelify   = require('babelify');
+  const jadeify   = require('jadeify');
   const watchify   = require('watchify');
 
   // Path variable
@@ -57,6 +58,7 @@ module.exports = function(config) {
         };
 
         b.transform(babelify);
+        b.transform(jadeify);
 
         const build = function() {
           let filename = path.basename(entry);
