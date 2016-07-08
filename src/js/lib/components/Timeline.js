@@ -16,6 +16,7 @@ class Timeline {
     this.stopScrubbing = this.stopScrubbing.bind(this);
     this.scrubTo = this.scrubTo.bind(this);
     this.mouseLeavesWindow = this.mouseLeavesWindow.bind(this);
+    this.changeCursor = this.changeCursor.bind(this);
 
     this.startX = 0;
     this.currentX = 0;
@@ -42,13 +43,9 @@ class Timeline {
   }
 
   scrubTo(evt) {
-    if (this.currentX !== evt.clientX) {
-      let parentPosition = returnElementOffset(evt.currentTarget);
-      let xPosition = evt.clientX - parentPosition.x;
-      // cursor.updatePosition(xPosition);
-      tl.progress(xPosition / this.elements.container.offsetWidth);
-    };
-    this.currentX = evt.clientX;
+    let parentPosition = returnElementOffset(evt.currentTarget);
+    let xPosition = evt.clientX - parentPosition.x;
+    tl.progress(xPosition / this.elements.container.offsetWidth);
   }
 
   stopScrubbing(evt) {
@@ -56,11 +53,17 @@ class Timeline {
     document.body.removeEventListener('mousemove', this.scrubTo);
     this.elements.container.addEventListener('mousedown', this.startScrubbing);
     document.removeEventListener('mouseout', this.mouseLeavesWindow);
+    clearTimeout(this.cursorChangeTimeOut);
 
     document.body.style.cursor = 'default';
     if (this.wasPlaying) {
       this.activeTimeline.play();
     }
+  }
+
+  changeCursor() {
+    document.body.style.cursor = 'ew-resize';
+    clearTimeout(this.cursorChangeTimeOut);
   }
 
   startScrubbing(evt) {
@@ -69,13 +72,18 @@ class Timeline {
     document.body.addEventListener('mousemove', this.scrubTo);
     document.addEventListener('mouseout', this.mouseLeavesWindow);
 
-    document.body.style.cursor = 'ew-resize';
-    // $timeline.classList.add(timelineScrubbingClass);
+    // Change cursor only after short delay
+    // So when we click to a position the cursor stays a pointer
+    // Hooray UX!
+    this.cursorChangeTimeOut = setTimeout(this.changeCursor, 50);
 
+    // Pause timeline and save the playstate
+    // so we can return to it later.
     this.wasPlaying = !this.activeTimeline.paused();
     this.activeTimeline.pause();
-  }
 
+    this.scrubTo(evt);
+  }
 
   update() {
     TweenMax.set(this.elements.track, {
