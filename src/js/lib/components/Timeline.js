@@ -4,10 +4,13 @@ class Timeline {
 
   constructor() {
     this.progress = 0;
+    this.element = undefined;
   }
 
   update() {
-    // console.log('Timeline update');
+    TweenMax.set(this.element, {
+      scaleX: this.progress,
+    });
   }
 
 }
