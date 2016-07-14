@@ -19,7 +19,6 @@ class Timeline {
     this.startScrubbing = this.startScrubbing.bind(this);
     this.stopScrubbing = this.stopScrubbing.bind(this);
     this.scrubTo = this.scrubTo.bind(this);
-    this.mouseLeavesWindow = this.mouseLeavesWindow.bind(this);
 
     this.changeMouseCursor = this.changeMouseCursor.bind(this);
     this.listenForKeyboardShortcuts = this.listenForKeyboardShortcuts.bind(this);
@@ -92,16 +91,8 @@ class Timeline {
     });
   }
 
-  mouseLeavesWindow(evt) {
-    let fromTarget = evt.relatedTarget || evt.toElement;
-    if (!fromTarget || fromTarget.nodeName === 'HTML') {
-      this.stopScrubbing();
-      this.activeTimeline.pause();
-    };
-  }
-
   scrubTo(evt) {
-    let parentPosition = returnElementOffset(evt.currentTarget);
+    let parentPosition = returnElementOffset(this.elements.timeline);
     let xPosition = evt.clientX - parentPosition.x;
     tl.progress(xPosition / this.elements.timeline.offsetWidth);
     this.updateCursor(evt);
@@ -109,9 +100,8 @@ class Timeline {
 
   stopScrubbing(evt) {
     document.body.removeEventListener('mouseup', this.stopScrubbing);
-    document.body.removeEventListener('mousemove', this.scrubTo);
+    document.removeEventListener('mousemove', this.scrubTo);
     this.elements.timeline.addEventListener('mousedown', this.startScrubbing);
-    document.removeEventListener('mouseout', this.mouseLeavesWindow);
     clearTimeout(this.cursorChangeTimeOut);
 
     this.stopFollowCursor();
@@ -129,9 +119,8 @@ class Timeline {
 
   startScrubbing(evt) {
     this.elements.timeline.removeEventListener('mousedown', this.startScrubbing);
-    document.body.addEventListener('mouseup', this.stopScrubbing);
-    document.body.addEventListener('mousemove', this.scrubTo);
-    document.addEventListener('mouseout', this.mouseLeavesWindow);
+    document.addEventListener('mouseup', this.stopScrubbing);
+    document.addEventListener('mousemove', this.scrubTo);
 
     // Always show cursor when scrubbing
     this.elements.cursor.style['opacity'] = 1;
