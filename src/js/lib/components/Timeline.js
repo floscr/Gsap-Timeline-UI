@@ -49,7 +49,9 @@ class Timeline {
     this.elements.timeline.addEventListener('mousedown', this.startScrubbing);
     this.elements.timeline.addEventListener('mouseover', this.startFollowCursor);
 
+    // Capture Mouse State
     this.elements.timeline.addEventListener('mouseover', () => { this.mouseIsOver = true; });
+    this.elements.timeline.addEventListener('mousemove', evt => { this.currentX = evt.clientX; });
     this.elements.timeline.addEventListener('mouseout', () => { this.mouseIsOver = false; });
 
     document.addEventListener('keydown', this.listenForKeyboardShortcuts);
@@ -58,13 +60,14 @@ class Timeline {
 
   listenForKeyboardShortcuts(evt) {
     switch(evt.keyCode) {
-      case 81: this.addMarker('start'); break;
+      case 81: this.addMarker(evt, 'start'); break; // Q
+      case 87: this.addMarker(evt, 'stop'); break; // W
     }
   }
 
-  addMarker(kind) {
+  addMarker(evt, kind) {
     if (this.mouseIsOver) {
-      this.markers.kind = kind;
+      this.markers[kind] = this.currentX;
     }
     console.log(this.markers);
   }
