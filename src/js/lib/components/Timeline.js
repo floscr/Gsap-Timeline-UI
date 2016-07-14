@@ -16,7 +16,7 @@ class Timeline {
     this.stopScrubbing = this.stopScrubbing.bind(this);
     this.scrubTo = this.scrubTo.bind(this);
     this.mouseLeavesWindow = this.mouseLeavesWindow.bind(this);
-    this.changeCursor = this.changeCursor.bind(this);
+    this.changeMouseCursor = this.changeMouseCursor.bind(this);
     this.startFollowCursor = this.startFollowCursor.bind(this);
     this.updateCursor = this.updateCursor.bind(this);
 
@@ -84,7 +84,7 @@ class Timeline {
     }
   }
 
-  changeCursor() {
+  changeMouseCursor() {
     document.body.style.cursor = 'ew-resize';
     clearTimeout(this.cursorChangeTimeOut);
   }
@@ -98,7 +98,7 @@ class Timeline {
     // Change cursor only after short delay
     // So when we click to a position the cursor stays a pointer
     // Hooray UX!
-    this.cursorChangeTimeOut = setTimeout(this.changeCursor, 50);
+    this.cursorChangeTimeOut = setTimeout(this.changeMouseCursor, 50);
 
     // Pause timeline and save the playstate
     // so we can return to it later.
