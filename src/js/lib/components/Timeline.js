@@ -94,8 +94,11 @@ class Timeline {
   scrubTo(evt) {
     let parentPosition = returnElementOffset(this.elements.timeline);
     let xPosition = evt.clientX - parentPosition.x;
-    tl.progress(xPosition / this.elements.timeline.offsetWidth);
-    this.updateCursor(evt);
+    // Disallow scrubbing over/under the window length
+    if (xPosition < this.elements.timeline.offsetWidth && xPosition > 0) {
+      tl.progress(xPosition / this.elements.timeline.offsetWidth);
+      this.updateCursor(evt);
+    }
   }
 
   stopScrubbing(evt) {
