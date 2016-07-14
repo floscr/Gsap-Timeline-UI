@@ -51,6 +51,10 @@ class Timeline {
     });
   }
 
+  stopFollowCursor(evt) {
+    this.elements.cursor.removeAttribute('style');
+  }
+
   updateCursor(evt) {
     window.requestAnimationFrame(() => {
       this.elements.cursor.style['left'] = `${evt.clientX}px`;
@@ -69,6 +73,7 @@ class Timeline {
     let parentPosition = returnElementOffset(evt.currentTarget);
     let xPosition = evt.clientX - parentPosition.x;
     tl.progress(xPosition / this.elements.timeline.offsetWidth);
+    this.updateCursor(evt);
   }
 
   stopScrubbing(evt) {
@@ -77,6 +82,8 @@ class Timeline {
     this.elements.timeline.addEventListener('mousedown', this.startScrubbing);
     document.removeEventListener('mouseout', this.mouseLeavesWindow);
     clearTimeout(this.cursorChangeTimeOut);
+
+    this.stopFollowCursor();
 
     document.body.style.cursor = 'default';
     if (this.wasPlaying) {
@@ -94,6 +101,9 @@ class Timeline {
     document.body.addEventListener('mouseup', this.stopScrubbing);
     document.body.addEventListener('mousemove', this.scrubTo);
     document.addEventListener('mouseout', this.mouseLeavesWindow);
+
+    // Always show cursor when scrubbing
+    this.elements.cursor.style['opacity'] = 1;
 
     // Change cursor only after short delay
     // So when we click to a position the cursor stays a pointer
