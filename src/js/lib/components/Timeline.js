@@ -17,6 +17,8 @@ class Timeline {
     this.scrubTo = this.scrubTo.bind(this);
     this.mouseLeavesWindow = this.mouseLeavesWindow.bind(this);
     this.changeCursor = this.changeCursor.bind(this);
+    this.startFollowCursor = this.startFollowCursor.bind(this);
+    this.updateCursor = this.updateCursor.bind(this);
 
     this.startX = 0;
     this.currentX = 0;
@@ -29,12 +31,30 @@ class Timeline {
     // TODO: Why does this need a [0] ?
     this.elements.timeline =
       this.elements.container.getElementsByClassName('gsapui--timeline')[0];
+    this.elements.cursor =
+      this.elements.container.getElementsByClassName('gsapui__timeline__track__cursor')[0];
     this.elements.track =
-      this.elements.container.getElementsByClassName('gsapui--timeline--track');
+      this.elements.container.getElementsByClassName('gsapui__timeline__track');
   }
 
   addEventListeners() {
     this.elements.timeline.addEventListener('mousedown', this.startScrubbing);
+    this.elements.timeline.addEventListener('mouseover', this.startFollowCursor);
+  }
+
+  startFollowCursor(evt) {
+    document.addEventListener('mousemove', this.updateCursor)
+
+    this.elements.timeline.addEventListener('mouseout', () => {
+      document.removeEventListener('mousemove', this.updateCursor);
+      this.elements.timeline.removeEventListener('mouseout', this.followCursor);
+    });
+  }
+
+  updateCursor(evt) {
+    window.requestAnimationFrame(() => {
+      this.elements.cursor.style['left'] = `${evt.clientX}px`;
+    });
   }
 
   mouseLeavesWindow(evt) {
