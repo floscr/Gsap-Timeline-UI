@@ -12,34 +12,61 @@ class Timeline {
       container: containerEl,
     };
 
+    // --------------
+    // METHOD BINDING
+    // --------------
+
     this.startScrubbing = this.startScrubbing.bind(this);
     this.stopScrubbing = this.stopScrubbing.bind(this);
     this.scrubTo = this.scrubTo.bind(this);
     this.mouseLeavesWindow = this.mouseLeavesWindow.bind(this);
+
     this.changeMouseCursor = this.changeMouseCursor.bind(this);
+    this.listenForKeyboardShortcuts = this.listenForKeyboardShortcuts.bind(this);
+
     this.startFollowCursor = this.startFollowCursor.bind(this);
     this.updateCursor = this.updateCursor.bind(this);
 
     this.startX = 0;
     this.currentX = 0;
+    this.mouseIsOver = false;
+    this.markers = {};
 
     this.createUi();
     this.addEventListeners();
   }
 
   createUi() {
-    // TODO: Why does this need a [0] ?
     this.elements.timeline =
       this.elements.container.getElementsByClassName('gsapui--timeline')[0];
     this.elements.cursor =
       this.elements.container.getElementsByClassName('gsapui__timeline__track__cursor')[0];
     this.elements.track =
-      this.elements.container.getElementsByClassName('gsapui__timeline__track');
+      this.elements.container.getElementsByClassName('gsapui__timeline__track')[0];
   }
 
   addEventListeners() {
     this.elements.timeline.addEventListener('mousedown', this.startScrubbing);
     this.elements.timeline.addEventListener('mouseover', this.startFollowCursor);
+
+    this.elements.timeline.addEventListener('mouseover', () => { this.mouseIsOver = true; });
+    this.elements.timeline.addEventListener('mouseout', () => { this.mouseIsOver = false; });
+
+    document.addEventListener('keydown', this.listenForKeyboardShortcuts);
+  }
+
+
+  listenForKeyboardShortcuts(evt) {
+    switch(evt.keyCode) {
+      case 81: this.addMarker('start'); break;
+    }
+  }
+
+  addMarker(kind) {
+    if (this.mouseIsOver) {
+      this.markers.kind = kind;
+    }
+    console.log(this.markers);
   }
 
   startFollowCursor(evt) {
