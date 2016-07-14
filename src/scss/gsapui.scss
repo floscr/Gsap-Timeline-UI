@@ -25,7 +25,6 @@
     transform-origin: left top;
     pointer-events: none;
     background-color: $color-timeline-track;
-
   }
 
   .gsapui--timeline:hover {
@@ -34,15 +33,17 @@
     }
   }
 
-  &__timeline__track__cursor {
+  &__timeline__marker {
     position: absolute;
     left: 0;
     top: 0;
     height: 100%;
     width: 1px;
+  }
+
+  &__timeline__track__cursor {
     opacity: 0;
     background-color: red;
-    z-index: 2;
   }
 
 }
