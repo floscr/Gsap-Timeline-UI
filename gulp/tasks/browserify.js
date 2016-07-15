@@ -14,6 +14,7 @@ module.exports = function(config) {
   const glob       = require('glob');
   const path       = require('path');
   const rename     = require('gulp-rename');
+  const header     = require('gulp-header');
 
   // Tasks
   const browserify  = require('browserify');
@@ -32,6 +33,7 @@ module.exports = function(config) {
   const shim     = require('browserify-shim');
   const watchify = require('watchify');
 
+  let pkg = require('../../package.json');
   let paths = config.paths.js;
 
   /*-------------------------------------------------------*\
@@ -95,7 +97,8 @@ module.exports = function(config) {
               rename(path => {
                 path.basename += '.min';
               }),
-              uglify()
+              uglify(),
+              header(config.banner, { pkg: pkg })
             )))
 
             .pipe(gulp.dest(paths.dst))

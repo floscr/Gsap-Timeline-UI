@@ -21,6 +21,14 @@ if (argv._[0] === 'build') {
   config.paths.icon.dst = 'build';
 }
 
+config.banner = ['/**',
+' * <%= pkg.name %> - <%= pkg.description %>',
+' * @version v<%= pkg.version %>',
+' * @link <%= pkg.homepage %>',
+' * @license <%= pkg.license %>',
+' */',
+''].join('\n');
+
 /*-------------------------------------------------------*\
 * Tasks
 \*-------------------------------------------------------*/
@@ -58,3 +66,6 @@ gulp.task('build', function(cb) {
 
 // Build for production
 gulp.task('test', ['default']);
+
+// Test gulp without compiling
+gulp.task('testgulp', []);
