@@ -13,6 +13,7 @@ module.exports = function(config) {
   const pipe       = require('multipipe');
   const glob       = require('glob');
   const path       = require('path');
+  const rename     = require('gulp-rename');
 
   // Tasks
   const browserify  = require('browserify');
@@ -72,6 +73,7 @@ module.exports = function(config) {
         const build = function() {
           let filename = path.basename(entry);
           let updateStart = Date.now();
+
           return b.bundle()
             .on('error', error => {
               util.log(util.colors.red(`Error: ${error}`));
@@ -88,16 +90,20 @@ module.exports = function(config) {
               sourcemaps.write('./')
             )))
 
+            // Add minified version in production
             .pipe(gulpif(config.production, pipe(
+              rename(path => {
+                path.basename += '.min';
+              }),
               uglify()
             )))
 
             .pipe(gulp.dest(paths.dst))
 
-
             .on('end', () => {
               util.log('Done! ' + util.colors.green((Date.now() - updateStart) + 'ms'));
             })
+
             .pipe(reload({
               stream: true,
               once: true
