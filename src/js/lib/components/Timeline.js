@@ -1,18 +1,15 @@
 import TweenMax from 'TweenMax';
 import returnElementOffset from '../utils/returnElementOffset.js';
 
-import GUtils from '../utils/Gutils.js'
+import BaseComponent from './BaseComponent.js';
+import GUtils from '../utils/Gutils.js';
 
-class Timeline {
+class Timeline extends BaseComponent {
 
-  constructor(containerEl, activeTimeline, isPlaying = true) {
+  init() {
     this.progress = 0;
-    this.isPlaying = isPlaying;
-    this.wasPlaying = isPlaying;
-    this.activeTimeline = activeTimeline;
-    this.elements = {
-      container: containerEl,
-    };
+    this.isPlaying = !this.activeTimeline.paused();
+    this.wasPlaying = this.isPlaying;
 
     // --------------
     // METHOD BINDING

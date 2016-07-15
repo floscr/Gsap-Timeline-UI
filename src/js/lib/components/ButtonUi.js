@@ -1,11 +1,8 @@
-class ButtonUi {
+import BaseComponent from './BaseComponent.js';
 
-  constructor(containerEl, activeTimeline) {
-    this.elements = {
-      container: containerEl,
-    };
-    this.timeline = activeTimeline;
+class ButtonUi extends BaseComponent {
 
+  init() {
     this.createUi();
   }
 
