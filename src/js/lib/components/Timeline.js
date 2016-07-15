@@ -101,7 +101,7 @@ class Timeline extends BaseComponent {
   }
 
   stopScrubbing(evt) {
-    document.body.removeEventListener('mouseup', this.stopScrubbing);
+    document.removeEventListener('mouseup', this.stopScrubbing);
     document.removeEventListener('mousemove', this.scrubTo);
     this.elements.timeline.addEventListener('mousedown', this.startScrubbing);
     clearTimeout(this.cursorChangeTimeOut);
