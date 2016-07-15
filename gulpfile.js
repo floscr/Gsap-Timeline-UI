@@ -7,12 +7,10 @@ const argv = require('yargs').argv;
 let config = require('gulp-config-bootstrap')('gulp/gulpconfig.json');
 let paths = config.paths;
 
-if (argv._[0] === 'test') {
-  config.watch = true;
-  config.paths.js.dst = 'test/assets/js';
-  config.paths.icon.dst = 'test/assets/fonts/iconfont';
-  config.paths.css.dst = 'test/assets/css';
-}
+config.watch = true;
+config.paths.js.dst = 'test/assets/js';
+config.paths.icon.dst = 'test/assets/fonts/iconfont';
+config.paths.css.dst = 'test/assets/css';
 
 if (argv._[0] === 'build') {
   config.production = true;
@@ -53,7 +51,7 @@ gulp.task('compile', [
 ]);
 
 // Continous Compilation
-gulp.task('default', function(cb) {
+gulp.task('compile-and-watch', function(cb) {
   runSequence(
     ['compile', 'watch']
   );
@@ -65,7 +63,7 @@ gulp.task('build', function(cb) {
 });
 
 // Build for production
-gulp.task('test', ['default']);
+gulp.task('default', ['compile-and-watch']);
 
 // Test gulp without compiling
 gulp.task('testgulp', []);

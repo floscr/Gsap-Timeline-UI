@@ -9,6 +9,15 @@
   background: $color-ui-bg;
   font-size: 0.8em;
 
+  // Turn off user selection for the ui
+  // Autoprefixer doesnt capture this, so we have to add all the vendor prefixes.
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
   &__timeline {
     position: relative;
     width: 100%;
@@ -43,17 +52,8 @@
 
   &__timeline__track__cursor {
     opacity: 0;
-    background-color: red;
+    background-color: $color-cursor;
   }
-
-  // Turn off user selection for the ui
-  // Autoprefixer doesnt capture this, so we have to add all the vendor prefixes.
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
 
 }
 
@@ -86,6 +86,11 @@
 
   &:hover {
     background-color: $color-ui-btn-hover;
+    cursor: pointer;
+  }
+
+  &:active {
+    background-color: $color-ui-btn-focus;
     cursor: pointer;
   }
 
