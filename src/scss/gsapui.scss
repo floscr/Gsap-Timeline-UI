@@ -43,7 +43,7 @@
 
   &__timeline__track__cursor {
     opacity: 0;
-    background-color: red;
+    background-color: $color-cursor;
   }
 
   // Turn off user selection for the ui
