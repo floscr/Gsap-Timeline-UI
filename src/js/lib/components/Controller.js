@@ -22,7 +22,9 @@ class Controller extends BaseComponent {
 
   skip(direction = 1) {
     let progress = this.timeline.progress();
-    this.timeline.progress(progress + progress * this.config.skipBy * direction);
+    let duration = this.timeline.duration();
+    let skipAmount = duration * this.config.skipBy * direction;
+    this.timeline.progress(progress + skipAmount);
   }
 
   skipForward() {

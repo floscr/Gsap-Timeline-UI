@@ -16,7 +16,7 @@ export default class GsapUi {
 
     this.config = {
       rootElement: document.body,
-      skipBy: 0.3, // Skip timeline by x percent
+      skipBy: 0.01, // Skip timeline by x percent
     };
 
     this.elements = {};
