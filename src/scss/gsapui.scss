@@ -89,4 +89,9 @@
     cursor: pointer;
   }
 
+  &:active {
+    background-color: $color-ui-btn-focus;
+    cursor: pointer;
+  }
+
 }
