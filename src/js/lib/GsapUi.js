@@ -33,7 +33,6 @@ export default class GsapUi {
     // Set the first timeline as the active timeline
     this.activeTimeline = this.timelines[0];
 
-
     this.createContainerNode();
     let componentConfig = {
       config: this.config,
@@ -50,9 +49,6 @@ export default class GsapUi {
     this.controller.components.buttonUi = this.components.buttonUi;
 
     this.addEventListeners();
-
-    this.activeTimeline.pause();
-    this.activeTimeline.progress(0.5);
   }
 
   createContainerNode() {
