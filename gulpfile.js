@@ -15,10 +15,19 @@ if (argv._[0] === 'test') {
 }
 
 if (argv._[0] === 'build') {
+  config.production = true;
   config.paths.js.dst = 'build';
   config.paths.css.dst = 'build';
   config.paths.icon.dst = 'build';
 }
+
+config.banner = ['/**',
+' * <%= pkg.name %> - <%= pkg.description %>',
+' * @version v<%= pkg.version %>',
+' * @link <%= pkg.homepage %>',
+' * @license <%= pkg.license %>',
+' */',
+''].join('\n');
 
 /*-------------------------------------------------------*\
 * Tasks
@@ -52,9 +61,11 @@ gulp.task('default', function(cb) {
 
 // Build for production
 gulp.task('build', function(cb) {
-  config.production = false;
   runSequence('compile', cb);
 });
 
 // Build for production
 gulp.task('test', ['default']);
+
+// Test gulp without compiling
+gulp.task('testgulp', []);

@@ -13,21 +13,28 @@ module.exports = function(config) {
   const pipe       = require('multipipe');
   const glob       = require('glob');
   const path       = require('path');
+  const rename     = require('gulp-rename');
+  const header     = require('gulp-header');
 
   // Tasks
-  const browserify = require('browserify');
-  const es         = require('event-stream');
-  const source     = require('vinyl-source-stream');
-  const buffer     = require('vinyl-buffer');
-  const reload     = require('browser-sync').reload;
+  const browserify  = require('browserify');
+  const es          = require('event-stream');
+  const source      = require('vinyl-source-stream');
+  const buffer      = require('vinyl-buffer');
+  const browserSync = require('browser-sync');
+  const reload      = browserSync.reload;
+  const sourcemaps  = require('gulp-sourcemaps');
 
   // Transforms
-  const uglify     = require('gulp-uglify');
-  const babelify   = require('babelify');
-  const watchify   = require('watchify');
+  const uglify   = require('gulp-uglify');
+  const babelify = require('babelify');
+  const jadeify  = require('jadeify');
+  const sassify  = require('sassify');
+  const shim     = require('browserify-shim');
+  const watchify = require('watchify');
 
-  // Path variable
-  let paths      = config.paths.js;
+  let pkg = require('../../package.json');
+  let paths = config.paths.js;
 
   /*-------------------------------------------------------*\
   * Task
@@ -57,10 +64,18 @@ module.exports = function(config) {
         };
 
         b.transform(babelify);
+        b.transform(jadeify);
+        b.transform(sassify, {
+          'auto-inject': true,
+          base64Encode: false,
+          sourceMap: false
+        });
+        b.transform(shim);
 
         const build = function() {
           let filename = path.basename(entry);
           let updateStart = Date.now();
+
           return b.bundle()
             .on('error', error => {
               util.log(util.colors.red(`Error: ${error}`));
@@ -69,17 +84,29 @@ module.exports = function(config) {
               util.log('Updating ' + util.colors.green(filename));
             })
             .pipe(source(filename))
+
+            .pipe(buffer())
+
+            .pipe(gulpif(!config.production, pipe(
+              sourcemaps.init({loadMaps: true}),
+              sourcemaps.write('./')
+            )))
+
+            // Add minified version in production
             .pipe(gulpif(config.production, pipe(
-              buffer(),
-              uglify()
+              rename(path => {
+                path.basename += '.min';
+              }),
+              uglify(),
+              header(config.banner, { pkg: pkg })
             )))
 
             .pipe(gulp.dest(paths.dst))
 
-
             .on('end', () => {
               util.log('Done! ' + util.colors.green((Date.now() - updateStart) + 'ms'));
             })
+
             .pipe(reload({
               stream: true,
               once: true

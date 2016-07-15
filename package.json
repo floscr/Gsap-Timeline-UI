@@ -1,17 +1,20 @@
 {
   "name": "gsap-ui",
-  "version": "0.3.0",
-  "description": "An ui for gsap",
-  "main": "build/gsapui.js",
+  "version": "0.0.1",
+  "description": "A timeline controller for GSAP",
+  "main": "build/gsapui.min.js",
   "directories": {
     "test": "test"
+  },
+  "browserify-shim": {
+    "TweenMax": "global:TweenMax"
   },
   "scripts": {
     "test": "gulp test"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@bitbucket.org/artish/gsap-ui.git"
+    "url": "git@github.com:floscr/Gsap-Timeline-UI.git"
   },
   "keywords": [
     "gsap",
@@ -23,7 +26,7 @@
   ],
   "author": "Florian Schroedl <hello@florianschroedl.com>",
   "license": "MIT",
-  "homepage": "https://bitbucket.org/artish/gsap-ui#readme",
+  "homepage": "https://github.com/floscr/Gsap-Timeline-UI",
   "browser": {
     "TimelineMax": "./node_modules/gsap/src/uncompressed/TimelineMax.js"
   },
@@ -33,6 +36,7 @@
     "babelify": "^7.2.0",
     "browser-sync": "^2.9.6",
     "browserify": "^11.2.0",
+    "browserify-shim": "^3.8.12",
     "del": "^2.0.2",
     "event-stream": "^3.3.2",
     "glob": "^5.0.14",
@@ -46,6 +50,7 @@
     "gulp-data": "^1.2.0",
     "gulp-eslint": "^1.1.1",
     "gulp-filter": "^3.0.1",
+    "gulp-header": "^1.8.7",
     "gulp-iconfont": "^5.0.1",
     "gulp-if": "^1.2.5",
     "gulp-jade": "^1.1.0",
@@ -60,16 +65,19 @@
     "gulp-uglify": "^1.4.1",
     "gulp-util": "^3.0.6",
     "handlebars": "^4.0.5",
+    "jadeify": "^4.6.0",
     "jshint-stylish": "^2.0.1",
     "lodash": "^3.10.1",
     "multipipe": "^0.1.2",
     "node-notifier": "^4.3.1",
     "nouislider": "^8.2.1",
     "run-sequence": "^1.1.4",
+    "sassify": "^1.0.0",
     "unpathify": "^0.1.6",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.4.0",
+    "webfontloader": "^1.6.26",
     "yargs": "^3.25.0"
   }
 }
