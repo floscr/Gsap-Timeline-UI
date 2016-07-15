@@ -12,27 +12,38 @@ class ButtonUi extends BaseComponent {
       return this.querySelector(`[data-action=${attr}]`);
     }.bind(this.elements.container);
 
-    this.elements.forward = qs('forward');
-    this.elements.backward = qs('backward');
-    this.elements.togglePlay = qs('toggleplay');
+    this.elements.buttons = {};
+    this.elements.buttons.forward = qs('forward');
+    this.elements.buttons.backward = qs('backward');
+    this.elements.buttons.togglePlay = qs('toggleplay');
 
-    this.elements.togglePlay.addEventListener('mouseup', evt => {
+    // Add mousedown listener to all buttons to trigger flash animation
+    for(let prop in this.elements.buttons) {
+      this.elements.buttons[prop].addEventListener('mousedown', () => { this.buttonFlash(); })
+    }
+
+    // Toggle Play Pause
+    this.elements.buttons.togglePlay.addEventListener('mouseup', evt => {
       this.controller.togglePlayPause();
       this.togglePlayPause();
     });
 
-    this.elements.forward.addEventListener('mouseup', evt => {
+    // Skip forward / backward
+    this.elements.buttons.forward.addEventListener('mouseup', evt => {
       this.controller.skipForward();
     });
-
-    this.elements.backward.addEventListener('mouseup', evt => {
+    this.elements.buttons.backward.addEventListener('mouseup', evt => {
       this.controller.skipBackward();
     });
 
   }
 
+  buttonFlash() {
+    console.log('Button Flash');
+  }
+
   togglePlayPause() {
-    this.elements.togglePlay.innerHTML = !this.timeline.paused() ? 'pause' : 'play_arrow';
+    this.elements.buttons.togglePlay.innerHTML = !this.timeline.paused() ? 'pause' : 'play_arrow';
   }
 
 }
