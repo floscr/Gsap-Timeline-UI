@@ -37,7 +37,7 @@ class Timeline {
 
   createUi() {
     this.elements.timeline =
-      this.elements.container.getElementsByClassName('gsapui--timeline')[0];
+      this.elements.container.getElementsByClassName('gsapui__timeline')[0];
     this.elements.cursor =
       this.elements.container.getElementsByClassName('gsapui__timeline__track__cursor')[0];
     this.elements.track =

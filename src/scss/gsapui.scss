@@ -9,7 +9,7 @@
   background: $color-ui-bg;
   font-size: 0.8em;
 
-  &--timeline {
+  &__timeline {
     position: relative;
     width: 100%;
     height: 40px;
@@ -27,7 +27,7 @@
     background-color: $color-timeline-track;
   }
 
-  .gsapui--timeline:hover {
+  .gsapui__timeline:hover {
     .gsapui__timeline__track__cursor {
       opacity: 1;
     }
