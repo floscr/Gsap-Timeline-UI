@@ -3,8 +3,6 @@
  *--------------------------------------------------------*/
 
 // Theme Colors
-$green: #42A942;
-$green-10: #2A963E;
 $red: #DA0000;
 $blue: #16649A;
 
@@ -24,16 +22,13 @@ $turquoise: #7AC5C7;
  * Color access variables
  *--------------------------------------------------------*/
 
-// Default Colors
-$color-primary: $green;
-$color-secondary: $blue;
-
-$color-cursor: $blue;
+$color-cursor: $red;
 
 $color-ui-bg: darken($bluegrey-90, 5%);
 $color-ui-font-color: white;
 $color-ui-border: rgba($bluegrey-10, 0.5);
 $color-ui-btn-hover: rgba($bluegrey-10, 0.23);
+$color-ui-btn-focus: rgba($bluegrey-10, 0.33);
 
 $color-timeline-track-bg: $bluegrey-90;
 $color-timeline-track: $bluegrey-10;
