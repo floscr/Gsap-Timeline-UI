@@ -17,13 +17,11 @@ class ButtonUi extends BaseComponent {
     this.elements.togglePlay = qs('toggleplay');
 
     this.elements.togglePlay.addEventListener('mouseup', evt => {
-      let isPaused = this.timeline.paused();
-      this.timeline.paused(!isPaused);
+      this.controller.togglePlayPause();
       this.togglePlayPause();
     });
 
     this.elements.forward.addEventListener('mouseup', evt => {
-      console.log(this.controller);
       this.controller.skipForward();
     });
 
