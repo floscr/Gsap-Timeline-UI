@@ -4,6 +4,8 @@ import WebFont from 'webfontloader';
 // Components
 import Timeline from './components/Timeline.js';
 import ButtonUi from './components/ButtonUi.js';
+import Controller from './components/Controller.js';
+import GUtils from './utils/Gutils.js'
 
 // Styles and templates
 import template from '../templates/ui.jade';
@@ -56,7 +58,18 @@ export default class GsapUi {
 
   addEventListeners() {
     this.activeTimeline.eventCallback('onUpdate', () => this.update());
-    // window.addEventListener('keydown', (e)=>this.checkKeyCode(e), false);
+    document.addEventListener('keydown', evt => this.listenForKeyboardShortcuts(evt));
+  }
+
+  listenForKeyboardShortcuts(evt) {
+    switch(evt.keyCode) {
+      case 32: this.togglePlayPause(); break; // Q
+    }
+  }
+
+  togglePlayPause() {
+    GUtils.togglePlayPause(this.activeTimeline);
+    this.components.buttonUi.togglePlayPause();
   }
 
   update() {

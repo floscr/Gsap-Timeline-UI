@@ -1,6 +1,8 @@
 import TweenMax from 'TweenMax';
 import returnElementOffset from '../utils/returnElementOffset.js';
 
+import GUtils from '../utils/Gutils.js'
+
 class Timeline {
 
   constructor(containerEl, activeTimeline, isPlaying = true) {

@@ -22,7 +22,7 @@ class ButtonUi {
     this.elements.togglePlay.addEventListener('mouseup', evt => {
       let isPaused = this.timeline.paused();
       this.timeline.paused(!isPaused);
-      evt.target.innerHTML = isPaused ? 'pause' : 'play_arrow';
+      this.togglePlayPause();
     });
 
     this.elements.forward.addEventListener('mouseup', evt => {
@@ -35,7 +35,10 @@ class ButtonUi {
       this.timeline.progress(progress - progress * 0.3);
     });
 
+  }
 
+  togglePlayPause() {
+    this.elements.togglePlay.innerHTML = !this.timeline.paused() ? 'pause' : 'play_arrow';
   }
 
 }
