@@ -15,8 +15,8 @@ class Controller extends BaseComponent {
   listenForKeyboardShortcuts(evt) {
     switch(evt.keyCode) {
       case 32: this.togglePlayPause(); break; // Spacebar
-      // case 37: this.togglePlayPause(); break; // ←
-      // case 39: this.togglePlayPause(); break; // →
+      case 37: this.skipBackward(); break; // ←
+      case 39: this.skipForward(); break; // →
     }
   }
 
