@@ -15,6 +15,7 @@ if (argv._[0] === 'test') {
 }
 
 if (argv._[0] === 'build') {
+  config.production = true;
   config.paths.js.dst = 'build';
   config.paths.css.dst = 'build';
   config.paths.icon.dst = 'build';

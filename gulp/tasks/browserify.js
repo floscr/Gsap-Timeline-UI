@@ -82,12 +82,15 @@ module.exports = function(config) {
             .pipe(source(filename))
 
             .pipe(buffer())
-            .pipe(sourcemaps.init({loadMaps: true})) // loads map from browserify file
+
+            .pipe(gulpif(config.production, pipe(
+              sourcemaps.init({loadMaps: true}),
+              sourcemaps.write('./')
+            )))
 
             .pipe(gulpif(config.production, pipe(
               uglify()
             )))
-            .pipe(sourcemaps.write('./')) // writes .map file
 
             .pipe(gulp.dest(paths.dst))
 
