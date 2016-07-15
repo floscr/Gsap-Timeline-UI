@@ -32,15 +32,21 @@ export default class GsapUi {
     // Set the first timeline as the active timeline
     this.activeTimeline = this.timelines[0];
 
-    // this.controller = new Controller(this.config, this.activeTimeline);
 
     this.createContainerNode();
     let componentConfig = {
       activeTimeline: this.activeTimeline,
       container: this.elements.container,
     }
+    this.controller = new Controller(componentConfig);
+    componentConfig.controller = this.controller;
+
     this.components.timeline = new Timeline(componentConfig);
     this.components.buttonUi = new ButtonUi(componentConfig);
+
+    this.controller.components.timeline = this.components.timeline;
+    this.controller.components.buttonUi = this.components.buttonUi;
+
     this.addEventListeners();
 
     this.activeTimeline.pause();
@@ -52,11 +58,12 @@ export default class GsapUi {
     let containerEl = document.createElement('div');
     containerEl.id = 'gsapui';
     containerEl.className = 'gsapui';
-    containerEl.innerHTML = template();
 
     // Disable Browser Drag and Drop functionality
     containerEl.setAttribute('ondragstart', 'return false;');
     containerEl.setAttribute('ondrop', 'return false;');
+
+    containerEl.innerHTML = template();
 
     this.config.rootElement.appendChild(containerEl);
     this.elements.container = containerEl;
@@ -70,15 +77,6 @@ export default class GsapUi {
 
   addEventListeners() {
     this.activeTimeline.eventCallback('onUpdate', () => this.update());
-    document.addEventListener('keydown', evt => this.listenForKeyboardShortcuts(evt));
-  }
-
-  listenForKeyboardShortcuts(evt) {
-    switch(evt.keyCode) {
-      case 32: this.togglePlayPause(); break; // Q
-      case 37: this.togglePlayPause(); break; // ←
-      case 39: this.togglePlayPause(); break; // →
-    }
   }
 
   togglePlayPause() {
