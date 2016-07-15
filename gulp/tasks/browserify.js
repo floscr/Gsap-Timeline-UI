@@ -83,7 +83,7 @@ module.exports = function(config) {
 
             .pipe(buffer())
 
-            .pipe(gulpif(config.production, pipe(
+            .pipe(gulpif(!config.production, pipe(
               sourcemaps.init({loadMaps: true}),
               sourcemaps.write('./')
             )))

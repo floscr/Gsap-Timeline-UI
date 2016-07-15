@@ -53,7 +53,6 @@ gulp.task('default', function(cb) {
 
 // Build for production
 gulp.task('build', function(cb) {
-  config.production = false;
   runSequence('compile', cb);
 });
 
