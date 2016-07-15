@@ -8,7 +8,7 @@ import Controller from './components/Controller.js';
 import GUtils from './utils/Gutils.js'
 
 // Styles and templates
-import template from '../templates/ui.jade';
+import template from '../../jade/ui.jade';
 import styles from '../../scss/gsapui.scss';
 
 export default class GsapUi {
