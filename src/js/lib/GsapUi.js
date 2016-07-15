@@ -32,23 +32,35 @@ export default class GsapUi {
     // Set the first timeline as the active timeline
     this.activeTimeline = this.timelines[0];
 
-    this.createNode();
-    this.components.timeline = new Timeline(this.elements.container, this.activeTimeline);
-    this.components.buttonUi = new ButtonUi(this.elements.container, this.activeTimeline);
+    // this.controller = new Controller(this.config, this.activeTimeline);
+
+    this.createContainerNode();
+    let componentConfig = {
+      activeTimeline: this.activeTimeline,
+      container: this.elements.container,
+    }
+    this.components.timeline = new Timeline(componentConfig);
+    this.components.buttonUi = new ButtonUi(componentConfig);
     this.addEventListeners();
 
     this.activeTimeline.pause();
     this.activeTimeline.progress(0.5);
   }
 
-  createNode() {
-    // Create container element from jade template
+  createContainerNode() {
+    // Create container element and add template from jade
     let containerEl = document.createElement('div');
     containerEl.id = 'gsapui';
     containerEl.className = 'gsapui';
     containerEl.innerHTML = template();
+
+    // Disable Browser Drag and Drop functionality
+    containerEl.setAttribute('ondragstart', 'return false;');
+    containerEl.setAttribute('ondrop', 'return false;');
+
     this.config.rootElement.appendChild(containerEl);
     this.elements.container = containerEl;
+
     WebFont.load({
       google: {
         families: ['Material Icons'],
@@ -64,6 +76,8 @@ export default class GsapUi {
   listenForKeyboardShortcuts(evt) {
     switch(evt.keyCode) {
       case 32: this.togglePlayPause(); break; // Q
+      case 37: this.togglePlayPause(); break; // ←
+      case 39: this.togglePlayPause(); break; // →
     }
   }
 
