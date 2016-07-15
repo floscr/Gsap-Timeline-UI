@@ -9,6 +9,15 @@
   background: $color-ui-bg;
   font-size: 0.8em;
 
+  // Turn off user selection for the ui
+  // Autoprefixer doesnt capture this, so we have to add all the vendor prefixes.
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
   &__timeline {
     position: relative;
     width: 100%;
@@ -45,15 +54,6 @@
     opacity: 0;
     background-color: $color-cursor;
   }
-
-  // Turn off user selection for the ui
-  // Autoprefixer doesnt capture this, so we have to add all the vendor prefixes.
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
 
 }
 
