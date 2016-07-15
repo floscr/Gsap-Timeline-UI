@@ -1,5 +1,11 @@
+// Packages
+import WebFont from 'webfontloader';
+
 // Components
 import Timeline from './components/Timeline.js';
+import ButtonUi from './components/ButtonUi.js';
+import Controller from './components/Controller.js';
+import GUtils from './utils/Gutils.js'
 
 // Styles and templates
 import template from '../templates/ui.jade';
@@ -10,6 +16,7 @@ export default class GsapUi {
 
     this.config = {
       rootElement: document.body,
+      skipBy: 0.01, // Skip timeline by x percent
     };
 
     this.elements = {};
@@ -26,26 +33,48 @@ export default class GsapUi {
     // Set the first timeline as the active timeline
     this.activeTimeline = this.timelines[0];
 
-    this.createUi();
+    this.createContainerNode();
+    let componentConfig = {
+      config: this.config,
+      activeTimeline: this.activeTimeline,
+      container: this.elements.container,
+    }
+    this.controller = new Controller(componentConfig);
+    componentConfig.controller = this.controller;
+
+    this.components.timeline = new Timeline(componentConfig);
+    this.components.buttonUi = new ButtonUi(componentConfig);
+
+    this.controller.components.timeline = this.components.timeline;
+    this.controller.components.buttonUi = this.components.buttonUi;
+
     this.addEventListeners();
   }
 
-  createUi() {
-    // Create container element from jade template
+  createContainerNode() {
+    // Create container element and add template from jade
     let containerEl = document.createElement('div');
     containerEl.id = 'gsapui';
     containerEl.className = 'gsapui';
+
+    // Disable Browser Drag and Drop functionality
+    containerEl.setAttribute('ondragstart', 'return false;');
+    containerEl.setAttribute('ondrop', 'return false;');
+
     containerEl.innerHTML = template();
+
     this.config.rootElement.appendChild(containerEl);
     this.elements.container = containerEl;
 
-
-    this.components.timeline = new Timeline(containerEl);
+    WebFont.load({
+      google: {
+        families: ['Material Icons'],
+      },
+    })
   }
 
   addEventListeners() {
     this.activeTimeline.eventCallback('onUpdate', () => this.update());
-    // window.addEventListener('keydown', (e)=>this.checkKeyCode(e), false);
   }
 
   update() {
