@@ -16,6 +16,7 @@ export default class GsapUi {
 
     this.config = {
       rootElement: document.body,
+      skipBy: 0.3, // Skip timeline by x percent
     };
 
     this.elements = {};
@@ -35,6 +36,7 @@ export default class GsapUi {
 
     this.createContainerNode();
     let componentConfig = {
+      config: this.config,
       activeTimeline: this.activeTimeline,
       container: this.elements.container,
     }
@@ -77,11 +79,6 @@ export default class GsapUi {
 
   addEventListeners() {
     this.activeTimeline.eventCallback('onUpdate', () => this.update());
-  }
-
-  togglePlayPause() {
-    GUtils.togglePlayPause(this.activeTimeline);
-    this.components.buttonUi.togglePlayPause();
   }
 
   update() {

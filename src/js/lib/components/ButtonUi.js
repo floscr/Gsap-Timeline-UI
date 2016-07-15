@@ -23,13 +23,12 @@ class ButtonUi extends BaseComponent {
     });
 
     this.elements.forward.addEventListener('mouseup', evt => {
-      let progress = this.timeline.progress();
-      this.timeline.progress(progress + progress * 0.3);
+      console.log(this.controller);
+      this.controller.skipForward();
     });
 
     this.elements.backward.addEventListener('mouseup', evt => {
-      let progress = this.timeline.progress();
-      this.timeline.progress(progress - progress * 0.3);
+      this.controller.skipBackward();
     });
 
   }

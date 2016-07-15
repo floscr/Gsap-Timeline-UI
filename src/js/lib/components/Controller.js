@@ -20,6 +20,19 @@ class Controller extends BaseComponent {
     }
   }
 
+  skip(direction = 1) {
+    let progress = this.timeline.progress();
+    this.timeline.progress(progress + progress * this.config.skipBy * direction);
+  }
+
+  skipForward() {
+    this.skip();
+  }
+
+  skipBackward() {
+    this.skip(-1);
+  }
+
   togglePlayPause() {
     GUtils.togglePlayPause(this.activeTimeline);
     this.components.buttonUi.togglePlayPause();
