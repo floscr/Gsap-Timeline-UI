@@ -1,3 +1,5 @@
+import store from 'store';
+
 import BaseComponent from './BaseComponent.js';
 import GUtils from '../utils/Gutils.js';
 
@@ -6,6 +8,7 @@ class Controller extends BaseComponent {
   init() {
     this.components = {};
     this.addEventListeners();
+    this.storageKey = 'gsapui';
   }
 
   addEventListeners() {
@@ -18,6 +21,22 @@ class Controller extends BaseComponent {
       case 37: this.skipBackward(); break; // ←
       case 39: this.skipForward(); break; // →
     }
+  }
+
+  storageSet(key, value) {
+    return store.set(`${this.storageKey}-${key}`, value);
+  }
+
+  storageGet(key) {
+    return store.get(`${this.storageKey}-${key}`);
+  }
+
+  storageSetProgress(value) {
+    return this.storageSet('progress', value);
+  }
+
+  storageGetProgress() {
+    return this.storageGet('progress');
   }
 
   skip(direction = 1) {

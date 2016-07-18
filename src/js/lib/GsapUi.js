@@ -1,3 +1,4 @@
+import store from 'store';
 // Packages
 import WebFont from 'webfontloader';
 
@@ -48,6 +49,10 @@ export default class GsapUi {
     this.controller.components.timeline = this.components.timeline;
     this.controller.components.buttonUi = this.components.buttonUi;
 
+    if (this.controller.storageGetProgress()) {
+      this.activeTimeline.progress(this.controller.storageGetProgress());
+    }
+
     this.addEventListeners();
   }
 
@@ -78,7 +83,10 @@ export default class GsapUi {
   }
 
   update() {
-    this.components.timeline.progress = this.activeTimeline.progress();
+    let progress = this.activeTimeline.progress();
+    this.components.timeline.progress = progress;
+    this.controller.storageSetProgress(progress);
+    // console.log(this.controller.storageGetProgress());
     this.components.timeline.update();
   }
 
