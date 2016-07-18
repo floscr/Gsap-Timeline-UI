@@ -16,6 +16,7 @@ export default class GsapUi {
     this.config = {
       rootElement: document.body,
       skipBy: 0.01, // Skip timeline by x percent
+      timeScaleAmount: 0.1, // Number to increase/decrease speed by
     };
 
     this.timelines = [];
@@ -49,10 +50,10 @@ export default class GsapUi {
     this.controller.components.buttonUi = this.components.buttonUi;
 
     this.controller.restoreTimelineState();
+    this.update();
 
     this.addEventListeners();
 
-    this.update();
   }
 
   createContainerNode() {
