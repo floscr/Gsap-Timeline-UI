@@ -38,6 +38,12 @@ require('./gulp/tasks/browserSync')(config);
 * Watch
 \*-------------------------------------------------------*/
 
+// Better watcher task that doesn't exit when creating/deleting folders
+function watchTask(paths, tasks) {
+  return watch(paths, () => {
+    runSequence(tasks);
+  });
+}
 gulp.task('watch', ['reload', 'browserSync'], function() {
 });
 

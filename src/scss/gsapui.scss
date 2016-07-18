@@ -1,4 +1,4 @@
-@import 'core/colors';
+@import './core/colors';
 
 .gsapui {
   position: fixed;
@@ -17,6 +17,14 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+
+  ::selection {
+    background: lighten(#FF2D64, 10%); /* WebKit/Blink Browsers */
+  }
+  ::-moz-selection {
+    background: #FF2D64; /* Gecko Browsers */
+  }
+
 
   &__timeline {
     position: relative;
@@ -101,11 +109,11 @@
 
   &__input {
     display: block;
-    width: 2.5em;
+    width: 4em;
 
-    background-color: rgba(white, 0.15);
+    background-color: darken($color-timeline-track-bg, 10%);
     border: none;
-    color: white;
+    color: lighten(#B5BBCB, 14%);
 
     font-size: 1.3em;
     font-family: monospace;
