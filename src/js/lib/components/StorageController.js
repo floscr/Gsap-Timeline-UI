@@ -2,8 +2,8 @@ import store from 'store';
 
 export default class StorageController {
 
-  constructor() {
-    this.key = 'gsap';
+  constructor(key) {
+    this.key = key || 'gsapui';
 
     this.props = {
       isPlaying: 'isPlaying',
