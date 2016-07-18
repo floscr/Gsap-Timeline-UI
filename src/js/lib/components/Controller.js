@@ -1,3 +1,5 @@
+import Store from './Store.js';
+
 import BaseComponent from './BaseComponent.js';
 import GUtils from '../utils/Gutils.js';
 
@@ -6,7 +8,12 @@ class Controller extends BaseComponent {
   init() {
     this.components = {};
     this.addEventListeners();
+    this.store = new Store();
   }
+
+  /*--------------------------------------------------------*\
+   * Event Listeners
+   *--------------------------------------------------------*/
 
   addEventListeners() {
     document.addEventListener('keydown', evt => this.listenForKeyboardShortcuts(evt));
@@ -19,6 +26,18 @@ class Controller extends BaseComponent {
       case 39: this.skipForward(); break; // →
     }
   }
+
+  restoreTimelineState() {
+    if (this.store.progress) this.activeTimeline.progress(this.progress);
+
+    if (this.store.isPlaying !== undefined) {
+      this.setPlayState(this.store.isPlaying);
+    }
+  }
+
+  /*--------------------------------------------------------*\
+   * Timeline Functions
+   *--------------------------------------------------------*/
 
   skip(direction = 1) {
     let progress = this.timeline.progress();
@@ -35,10 +54,16 @@ class Controller extends BaseComponent {
     this.skip(-1);
   }
 
+  setPlayState(isPlaying) {
+    this.components.buttonUi.setToPlay(!isPlaying);
+    this.activeTimeline.paused(!isPlaying);
+  }
+
   togglePlayPause() {
-    GUtils.togglePlayPause(this.activeTimeline);
-    this.components.buttonUi.togglePlayPause();
+    let isPaused = GUtils.togglePlayPause(this.activeTimeline);
+    this.components.buttonUi.setToPlay(isPaused);
+    this.store.isPlaying = !isPaused;
   }
 
 }
-export default Controller
+export default Controller;
