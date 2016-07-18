@@ -28,7 +28,7 @@ class Controller extends BaseComponent {
   }
 
   restoreTimelineState() {
-    if (this.store.progress) this.activeTimeline.progress(this.progress);
+    if (this.store.progress) this.activeTimeline.progress(this.store.progress);
 
     if (this.store.isPlaying !== undefined) {
       this.setPlayState(this.store.isPlaying);
