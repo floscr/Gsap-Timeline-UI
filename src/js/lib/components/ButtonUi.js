@@ -17,15 +17,9 @@ class ButtonUi extends BaseComponent {
     this.elements.buttons.backward = qs('backward');
     this.elements.buttons.togglePlay = qs('toggleplay');
 
-    // // Add mousedown listener to all buttons to trigger flash animation
-    // for(let prop in this.elements.buttons) {
-    //   this.elements.buttons[prop].addEventListener('mousedown', () => { this.buttonFlash(); })
-    // }
-
     // Toggle Play Pause
     this.elements.buttons.togglePlay.addEventListener('mouseup', evt => {
       this.controller.togglePlayPause();
-      this.togglePlayPause();
     });
 
     // Skip forward / backward
@@ -39,10 +33,6 @@ class ButtonUi extends BaseComponent {
     // Switch current playstate
     this.togglePlayPause();
   }
-
-  // buttonFlash() {
-  //   console.log('Button Flash');
-  // }
 
   togglePlayPause() {
     this.elements.buttons.togglePlay.innerHTML = !this.timeline.paused() ? 'pause' : 'play_arrow';
