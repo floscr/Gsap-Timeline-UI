@@ -53,7 +53,13 @@ export default class GsapUi {
       this.activeTimeline.progress(this.controller.storageGetProgress());
     }
 
+    if (this.controller.storageGet('isPaused')) {
+      this.activeTimeline.paused(this.controller.storageGet('isPaused'));
+      this.update();
+    }
+
     this.addEventListeners();
+
   }
 
   createContainerNode() {
@@ -83,10 +89,10 @@ export default class GsapUi {
   }
 
   update() {
-    let progress = this.activeTimeline.progress();
-    this.components.timeline.progress = progress;
+    let progress = this.components.timeline.progress = this.activeTimeline.progress();
+
     this.controller.storageSetProgress(progress);
-    // console.log(this.controller.storageGetProgress());
+
     this.components.timeline.update();
   }
 
