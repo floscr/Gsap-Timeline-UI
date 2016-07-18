@@ -41,4 +41,8 @@ export default class Store {
     return store.set(`${this.key}-${key}`, value);
   }
 
+  restore() {
+
+  }
+
 };

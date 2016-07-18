@@ -1,4 +1,3 @@
-import store from 'store';
 // Packages
 import WebFont from 'webfontloader';
 
@@ -6,22 +5,21 @@ import WebFont from 'webfontloader';
 import Timeline from './components/Timeline.js';
 import ButtonUi from './components/ButtonUi.js';
 import Controller from './components/Controller.js';
-import GUtils from './utils/Gutils.js'
 
 // Styles and templates
 import template from '../../jade/ui.jade';
 import styles from '../../scss/gsapui.scss';
 
 export default class GsapUi {
-  constructor(timelines) {
 
+  constructor(timelines) {
     this.config = {
       rootElement: document.body,
       skipBy: 0.01, // Skip timeline by x percent
     };
 
-    this.elements = {};
     this.timelines = [];
+    this.elements = {};
     this.components = {};
 
     // Accept single and multiple timeline objects
@@ -30,11 +28,12 @@ export default class GsapUi {
     } else {
       this.timelines.push(timelines);
     }
-
     // Set the first timeline as the active timeline
     this.activeTimeline = this.timelines[0];
 
     this.createContainerNode();
+
+    // Default config for all classes
     let componentConfig = {
       config: this.config,
       activeTimeline: this.activeTimeline,
@@ -49,17 +48,11 @@ export default class GsapUi {
     this.controller.components.timeline = this.components.timeline;
     this.controller.components.buttonUi = this.components.buttonUi;
 
-    if (this.controller.store.progress) {
-      this.activeTimeline.progress(this.controller.store.progress);
-    }
-
-    if (this.controller.store.isPlaying !== undefined) {
-      this.controller.setPlayState(this.controller.store.isPlaying);
-      this.update();
-    }
+    this.controller.restore();
 
     this.addEventListeners();
 
+    this.update();
   }
 
   createContainerNode() {

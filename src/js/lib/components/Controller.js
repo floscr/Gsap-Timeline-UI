@@ -27,6 +27,14 @@ class Controller extends BaseComponent {
     }
   }
 
+  restore() {
+    if (this.store.progress) this.activeTimeline.progress(this.progress);
+
+    if (this.store.isPlaying !== undefined) {
+      this.setPlayState(this.store.isPlaying);
+    }
+  }
+
   /*--------------------------------------------------------*\
    * Timeline Functions
    *--------------------------------------------------------*/
