@@ -17,6 +17,10 @@ class ButtonUi extends BaseComponent {
     this.elements.buttons.backward = qs('backward');
     this.elements.buttons.togglePlay = qs('toggleplay');
 
+    this.elements.buttons.slower = qs('slower');
+    this.elements.buttons.faster = qs('faster');
+    this.elements.timeScale = qs('timeScale');
+
     // Toggle Play Pause
     this.elements.buttons.togglePlay.addEventListener('mouseup', evt => {
       this.controller.togglePlayPause();
@@ -30,6 +34,26 @@ class ButtonUi extends BaseComponent {
       this.controller.skipBackward();
     });
 
+    // Skip forward / backward
+    this.elements.buttons.slower.addEventListener('mouseup', evt => {
+      this.controller.slower();
+    });
+    this.elements.buttons.faster.addEventListener('mouseup', evt => {
+      this.controller.faster();
+    });
+
+    this.elements.timeScale.addEventListener('click', evt => {
+      evt.target.select();
+    })
+    this.elements.timeScale.addEventListener('input', evt => {
+      this.controller.setTimeScaleTo(parseInt(evt.target.value));
+    })
+
+  }
+
+  updateTimeScale(timeScale) {
+    this.controller.setTimeScaleTo(timeScale);
+    this.elements.timeScale.value = timeScale;
   }
 
   setToPlay(isPlaying) {

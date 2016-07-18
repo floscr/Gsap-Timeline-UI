@@ -3,6 +3,8 @@ import Store from './Store.js';
 import BaseComponent from './BaseComponent.js';
 import GUtils from '../utils/Gutils.js';
 
+let lastTimeScale;
+
 class Controller extends BaseComponent {
 
   init() {
@@ -52,6 +54,25 @@ class Controller extends BaseComponent {
 
   skipBackward() {
     this.skip(-1);
+  }
+
+  setTimeScaleTo(amount) {
+    console.log(typeof amount);
+    this.activeTimeline.timeScale(amount);
+  }
+
+  timeScale(amount) {
+    let timeScale = this.activeTimeline.timeScale() + amount;
+    this.activeTimeline.timeScale(timeScale);
+    this.components.buttonUi.updateTimeScale(timeScale);
+  }
+
+  slower() {
+    this.timeScale(-this.config.timeScaleAmount)
+  }
+
+  faster() {
+    this.timeScale(this.config.timeScaleAmount)
   }
 
   setPlayState(isPlaying) {

@@ -95,3 +95,30 @@
   }
 
 }
+
+.gsapui__numberdial {
+  display: flex;
+
+  &__input {
+    display: block;
+    width: 2.5em;
+
+    background-color: rgba(white, 0.15);
+    border: none;
+    color: white;
+
+    font-size: 1.3em;
+    font-family: monospace;
+    text-align: center;
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
