@@ -48,7 +48,7 @@ export default class GsapUi {
     this.controller.components.timeline = this.components.timeline;
     this.controller.components.buttonUi = this.components.buttonUi;
 
-    this.controller.restore();
+    this.controller.restoreTimelineState();
 
     this.addEventListeners();
 
