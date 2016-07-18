@@ -18,7 +18,7 @@ class Controller extends BaseComponent {
    *--------------------------------------------------------*/
 
   addEventListeners() {
-    document.addEventListener('keydown', evt => this.listenForKeyboardShortcuts(evt));
+    document.addEventListener('keyup', evt => this.listenForKeyboardShortcuts(evt));
   }
 
   listenForKeyboardShortcuts(evt) {
