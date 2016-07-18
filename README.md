@@ -16,6 +16,9 @@ Gsap Ui shows the current state of your gsap timeline to help when creating anim
   + <kbd>Spacebar</kbd> Toggle Play / Pause
   + <kbd>→</kbd> Skip forward
   + <kbd>←</kbd> Skip forward
+  + <kbd>=</kbd> / <kbd>+</kbd> Faster
+  + <kbd>-</kbd> Slower
+  + <kbd>R</kbd> Reset timescale
 
 ## Setup
 
