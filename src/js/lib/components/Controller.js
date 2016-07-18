@@ -57,6 +57,7 @@ class Controller extends BaseComponent {
   }
 
   setTimeScaleTo(amount) {
+    console.log(typeof amount);
     this.activeTimeline.timeScale(amount);
   }
 

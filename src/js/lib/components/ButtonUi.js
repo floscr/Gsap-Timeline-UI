@@ -46,12 +46,13 @@ class ButtonUi extends BaseComponent {
       evt.target.select();
     })
     this.elements.timeScale.addEventListener('input', evt => {
-      this.controller.setTimeScaleTo(evt.target.value);
+      this.controller.setTimeScaleTo(parseInt(evt.target.value));
     })
 
   }
 
   updateTimeScale(timeScale) {
+    this.controller.setTimeScaleTo(timeScale);
     this.elements.timeScale.value = timeScale;
   }
 
