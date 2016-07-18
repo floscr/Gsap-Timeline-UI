@@ -52,7 +52,6 @@ class ButtonUi extends BaseComponent {
   }
 
   updateTimeScale(timeScale) {
-    this.controller.setTimeScaleTo(timeScale);
     this.elements.timeScale.value = timeScale;
   }
 
