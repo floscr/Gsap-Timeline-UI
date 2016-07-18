@@ -1,4 +1,4 @@
-import store from 'store';
+import StorageController from './StorageController.js';
 
 import BaseComponent from './BaseComponent.js';
 import GUtils from '../utils/Gutils.js';
@@ -8,7 +8,7 @@ class Controller extends BaseComponent {
   init() {
     this.components = {};
     this.addEventListeners();
-    this.storageKey = 'gsapui';
+    this.store = new StorageController();
   }
 
   /*--------------------------------------------------------*\
@@ -54,28 +54,11 @@ class Controller extends BaseComponent {
   togglePlayPause() {
     let isPaused = GUtils.togglePlayPause(this.activeTimeline);
     this.components.buttonUi.setToPlay(isPaused);
-    this.storageSet('isPlaying', !isPaused);
+    this.store.isPlaying = !isPaused;
   }
 
   /*--------------------------------------------------------*\
    * Local Storage
    *--------------------------------------------------------*/
-
-  storageSet(key, value) {
-    return store.set(`${this.storageKey}-${key}`, value);
-  }
-
-  storageGet(key) {
-    return store.get(`${this.storageKey}-${key}`);
-  }
-
-  storageSetProgress(value) {
-    return this.storageSet('progress', value);
-  }
-
-  storageGetProgress() {
-    return this.storageGet('progress');
-  }
-
 }
 export default Controller

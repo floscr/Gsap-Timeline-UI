@@ -49,12 +49,12 @@ export default class GsapUi {
     this.controller.components.timeline = this.components.timeline;
     this.controller.components.buttonUi = this.components.buttonUi;
 
-    if (this.controller.storageGetProgress()) {
-      this.activeTimeline.progress(this.controller.storageGetProgress());
+    if (this.controller.store.progress) {
+      this.activeTimeline.progress(this.controller.store.progress);
     }
 
-    if (this.controller.storageGet('isPlaying') !== undefined) {
-      this.controller.setPlayState(this.controller.storageGet('isPlaying'))
+    if (this.controller.store.isPlaying !== undefined) {
+      this.controller.setPlayState(this.controller.store.isPlaying);
       this.update();
     }
 
@@ -91,7 +91,7 @@ export default class GsapUi {
   update() {
     let progress = this.components.timeline.progress = this.activeTimeline.progress();
 
-    this.controller.storageSetProgress(progress);
+    this.controller.store.progress = progress;
 
     this.components.timeline.update();
   }
