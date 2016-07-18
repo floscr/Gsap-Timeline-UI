@@ -1,36 +1,44 @@
 import store from 'store';
 
-class StorageController {
+export default class StorageController {
 
   constructor() {
     this.key = 'gsap';
+
     this.props = {
       isPlaying: 'isPlaying',
       progress: 'progress',
     }
+
+    // Set up getters and setters for all props
+    for (let prop in this.props) {
+      this.register(prop);
+    }
   }
 
-  set(key, value) {
-    return store.set(`${this.storageKey}-${key}`, value);
+  /**
+   * Register fields with getters and setters
+   */
+  register(field) {
+    let prop = {};
+    prop[field] = {}
+    prop[field].get = () => this.get(field);
+    prop[field].set = value => this.set(field, value);
+    Object.defineProperties(this, prop);
   }
+
+  /**
+   * Get localstorage key with a key prefix to a value
+   */
   get(key) {
-    return store.get(`${this.storageKey}-${key}`);
+    return store.get(`${this.key}-${key}`);
   }
 
-  set progress(value) {
-    return this.set(this.props.progress, value);
-  }
-  get progress() {
-    return this.get(this.props.progress);
-  }
-
-  set isPlaying(value) {
-    return this.set(this.props.isPlaying, value);
-  }
-  get isPlaying() {
-    return this.get(this.props.isPlaying);
+  /**
+   * Set localstorage key with a key prefix
+   */
+  set(key, value) {
+    return store.set(`${this.key}-${key}`, value);
   }
 
-}
-
-export default StorageController;
+};
