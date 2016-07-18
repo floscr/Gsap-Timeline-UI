@@ -57,8 +57,5 @@ class Controller extends BaseComponent {
     this.store.isPlaying = !isPaused;
   }
 
-  /*--------------------------------------------------------*\
-   * Local Storage
-   *--------------------------------------------------------*/
 }
-export default Controller
+export default Controller;
