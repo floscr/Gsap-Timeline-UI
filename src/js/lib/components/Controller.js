@@ -11,6 +11,10 @@ class Controller extends BaseComponent {
     this.storageKey = 'gsapui';
   }
 
+  /*--------------------------------------------------------*\
+   * Event Listeners
+   *--------------------------------------------------------*/
+
   addEventListeners() {
     document.addEventListener('keydown', evt => this.listenForKeyboardShortcuts(evt));
   }
@@ -23,21 +27,9 @@ class Controller extends BaseComponent {
     }
   }
 
-  storageSet(key, value) {
-    return store.set(`${this.storageKey}-${key}`, value);
-  }
-
-  storageGet(key) {
-    return store.get(`${this.storageKey}-${key}`);
-  }
-
-  storageSetProgress(value) {
-    return this.storageSet('progress', value);
-  }
-
-  storageGetProgress() {
-    return this.storageGet('progress');
-  }
+  /*--------------------------------------------------------*\
+   * Timeline Functions
+   *--------------------------------------------------------*/
 
   skip(direction = 1) {
     let progress = this.timeline.progress();
@@ -63,6 +55,26 @@ class Controller extends BaseComponent {
     let isPaused = GUtils.togglePlayPause(this.activeTimeline);
     this.components.buttonUi.setToPlay(isPaused);
     this.storageSet('isPlaying', !isPaused);
+  }
+
+  /*--------------------------------------------------------*\
+   * Local Storage
+   *--------------------------------------------------------*/
+
+  storageSet(key, value) {
+    return store.set(`${this.storageKey}-${key}`, value);
+  }
+
+  storageGet(key) {
+    return store.get(`${this.storageKey}-${key}`);
+  }
+
+  storageSetProgress(value) {
+    return this.storageSet('progress', value);
+  }
+
+  storageGetProgress() {
+    return this.storageGet('progress');
   }
 
 }
