@@ -24,8 +24,14 @@ class Controller extends BaseComponent {
   listenForKeyboardShortcuts(evt) {
     switch(evt.keyCode) {
       case 32: this.togglePlayPause(); break; // Spacebar
+
       case 37: this.skipBackward(); break; // ←
       case 39: this.skipForward(); break; // →
+
+      case 82: this.setTimeScaleTo(1); break; // r
+      case 43: this.faster(); break; // +
+      case 187: this.faster(); break; // =
+      case 189: this.slower(); break; // →
     }
   }
 
@@ -57,8 +63,8 @@ class Controller extends BaseComponent {
   }
 
   setTimeScaleTo(amount) {
-    console.log(typeof amount);
     this.activeTimeline.timeScale(amount);
+    this.components.buttonUi.updateTimeScale(amount);
   }
 
   timeScale(amount) {
