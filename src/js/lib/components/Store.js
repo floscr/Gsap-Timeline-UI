@@ -1,6 +1,6 @@
 import store from 'store';
 
-export default class StorageController {
+export default class Store {
 
   constructor(key) {
     this.key = key || 'gsapui';

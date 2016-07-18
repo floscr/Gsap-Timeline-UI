@@ -1,4 +1,4 @@
-import StorageController from './StorageController.js';
+import Store from './Store.js';
 
 import BaseComponent from './BaseComponent.js';
 import GUtils from '../utils/Gutils.js';
@@ -8,7 +8,7 @@ class Controller extends BaseComponent {
   init() {
     this.components = {};
     this.addEventListeners();
-    this.store = new StorageController();
+    this.store = new Store();
   }
 
   /*--------------------------------------------------------*\
