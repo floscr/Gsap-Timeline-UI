@@ -30,12 +30,10 @@ class ButtonUi extends BaseComponent {
       this.controller.skipBackward();
     });
 
-    // Switch current playstate
-    this.togglePlayPause();
   }
 
-  togglePlayPause() {
-    this.elements.buttons.togglePlay.innerHTML = !this.timeline.paused() ? 'pause' : 'play_arrow';
+  setToPlay(isPlaying) {
+    this.elements.buttons.togglePlay.innerHTML = isPlaying ? 'play_arrow' : 'pause';
   }
 
 }

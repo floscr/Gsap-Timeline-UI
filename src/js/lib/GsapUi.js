@@ -53,8 +53,8 @@ export default class GsapUi {
       this.activeTimeline.progress(this.controller.storageGetProgress());
     }
 
-    if (this.controller.storageGet('isPaused')) {
-      this.activeTimeline.paused(this.controller.storageGet('isPaused'));
+    if (this.controller.storageGet('isPlaying') !== undefined) {
+      this.controller.setPlayState(this.controller.storageGet('isPlaying'))
       this.update();
     }
 

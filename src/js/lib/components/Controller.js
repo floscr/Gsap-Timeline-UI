@@ -54,10 +54,15 @@ class Controller extends BaseComponent {
     this.skip(-1);
   }
 
+  setPlayState(isPlaying) {
+    this.components.buttonUi.setToPlay(!isPlaying);
+    this.activeTimeline.paused(!isPlaying);
+  }
+
   togglePlayPause() {
     let isPaused = GUtils.togglePlayPause(this.activeTimeline);
-    this.components.buttonUi.togglePlayPause();
-    this.storageSet('isPaused', isPaused);
+    this.components.buttonUi.setToPlay(isPaused);
+    this.storageSet('isPlaying', !isPaused);
   }
 
 }
