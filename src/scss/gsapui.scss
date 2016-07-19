@@ -81,15 +81,16 @@
   }
 }
 
+$btn-padding-top: 0.5em;
+$btn-padding-side: 0.8em;
 .gsapui__btn {
   display: block;
-  padding: 0.5em 0.8em;
+  padding: $btn-padding-top $btn-padding-side;
   height: 100%;
-  outline: none;
+  margin: 0;
 
   border: none;
   background-color: transparent;
-
   color: $color-ui-font-color;
 
   &:hover {
