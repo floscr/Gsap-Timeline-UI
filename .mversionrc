@@ -1,0 +1,6 @@
+{
+  "scripts": {
+    "precommit": "gulp build",
+    "postcommit": "git push && git push --tags && npm publish"
+  }
+}
