@@ -20,7 +20,7 @@ class Controller extends BaseComponent {
    *--------------------------------------------------------*/
 
   addEventListeners() {
-    document.addEventListener('keyup', evt => this.listenForKeyboardShortcuts(evt));
+    document.addEventListener('keypress', evt => this.listenForKeyboardShortcuts(evt));
   }
 
   listenForKeyboardShortcuts(evt) {
@@ -34,6 +34,7 @@ class Controller extends BaseComponent {
       case 43: this.faster(); break; // +
       case 187: this.faster(); break; // =
       case 189: this.slower(); break; // →
+      case 109: this.slower(); break; // →
     }
   }
 

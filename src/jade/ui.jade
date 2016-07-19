@@ -16,7 +16,7 @@ nav.gsapui__controls
 
   ul.gsapui__btnlist.gsapui__timescale
     li.gsapui__btnlist__item.gsapui__numberdial
-      button(class="gsapui__btn arrow_drop_down--small material-icons" data-action="slower") remove
+      button(class="gsapui__btn gsapui__btn--narrow arrow_drop_down--small material-icons" data-action="slower") remove
       input(
         class="gsapui__numberdial__input"
         type="number"
@@ -24,5 +24,5 @@ nav.gsapui__controls
         onkeyup="this.value=this.value.replace(/[^0-9.,]+/,'')"
         data-action="timeScale"
       )
-      button(class="gsapui__btn gsapui__btn--small material-icons" data-action="faster") add
+      button(class="gsapui__btn gsapui__btn--narrow material-icons" data-action="faster") add
 
