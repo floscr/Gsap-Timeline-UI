@@ -1,6 +1,6 @@
 {
   "name": "gsap-ui",
-  "version": "0.0.2",
+  "version": "0.1.1",
   "description": "A timeline controller for GSAP",
   "main": "build/gsapui.min.js",
   "directories": {

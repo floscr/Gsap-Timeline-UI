@@ -1,6 +1,10 @@
 # Change Log
 
 ## [0.1.0] - 2016-07-19
+### Fixed
+Update build
+
+## [0.1.0] - 2016-07-19
 ### Added
 - Timescale interface element
 - State restoration via LocalStorage
