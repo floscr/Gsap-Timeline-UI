@@ -1,5 +1,7 @@
 import Store from './Store.js';
 
+import round from 'lodash/math/round';
+
 import BaseComponent from './BaseComponent.js';
 import GUtils from '../utils/Gutils.js';
 
@@ -68,7 +70,7 @@ class Controller extends BaseComponent {
   }
 
   timeScale(amount) {
-    let timeScale = this.activeTimeline.timeScale() + amount;
+    let timeScale = round(this.activeTimeline.timeScale() + amount, 4);
     this.activeTimeline.timeScale(timeScale);
     this.components.buttonUi.updateTimeScale(timeScale);
   }
