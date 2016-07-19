@@ -1,5 +1,16 @@
 # Change Log
 
+## [0.1.0] - 2016-07-19
+### Added
+- Timescale interface element
+- State restoration via LocalStorage
+
+### Fixed
+- Fix Safari buttons not adapting to the full height of the toolbar
+
+### Changed
+Finetune the UI colors and Button dimensiosn
+
 ## [0.0.2] - 2016-07-15
 ### Fixed
 - Fix bug where the play pause button would not work after scrubbing.
