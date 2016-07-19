@@ -8,6 +8,7 @@ export default class Store {
     this.props = {
       isPlaying: 'isPlaying',
       progress: 'progress',
+      timeScale: 'timeScale',
     }
 
     // Set up getters and setters for all props

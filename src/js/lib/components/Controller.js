@@ -39,6 +39,7 @@ class Controller extends BaseComponent {
 
   restoreTimelineState() {
     if (this.store.progress) this.activeTimeline.progress(this.store.progress);
+    if (this.store.timeScale) this.setTimeScaleTo(this.store.timeScale);
 
     if (this.store.isPlaying !== undefined) {
       this.setPlayState(this.store.isPlaying);
@@ -66,13 +67,18 @@ class Controller extends BaseComponent {
 
   setTimeScaleTo(amount) {
     this.activeTimeline.timeScale(amount);
-    this.components.buttonUi.updateTimeScale(amount);
+    this.updateTimeScale(amount);
   }
 
   timeScale(amount) {
     let timeScale = round(this.activeTimeline.timeScale() + amount, 4);
     this.activeTimeline.timeScale(timeScale);
+    this.updateTimeScale(timeScale);
+  }
+
+  updateTimeScale(timeScale) {
     this.components.buttonUi.updateTimeScale(timeScale);
+    this.store.timeScale = timeScale;
   }
 
   slower() {
