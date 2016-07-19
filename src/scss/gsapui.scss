@@ -101,7 +101,6 @@
     background-color: $color-ui-btn-focus;
     cursor: pointer;
   }
-
 }
 
 .gsapui__numberdial {
@@ -130,3 +129,13 @@
     }
   }
 }
+
+.gsapui__controls {
+  display: flex;
+}
+
+.gsapui__timescale {
+  border-left: 1px solid $color-ui-border;
+  margin-left: 4.3em;
+}
+
