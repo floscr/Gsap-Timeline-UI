@@ -24,11 +24,11 @@ $turquoise: #7AC5C7;
 
 $color-cursor: $red;
 
-$color-ui-bg: darken($bluegrey-90, 5%);
-$color-ui-font-color: white;
-$color-ui-border: rgba($bluegrey-10, 0.5);
+$color-ui-bg: darken(#222c33, 4%);
+$color-ui-font-color: lighten(#B5BBCB, 14%);
+$color-ui-border: rgba($bluegrey-10, 0.23);
 $color-ui-btn-hover: rgba($bluegrey-10, 0.23);
 $color-ui-btn-focus: rgba($bluegrey-10, 0.33);
 
-$color-timeline-track-bg: $bluegrey-90;
-$color-timeline-track: $bluegrey-10;
+$color-timeline-track-bg: darken($color-ui-bg, 3%);
+$color-timeline-track: saturate(lighten($bluegrey-10, 0.10%), 10%);

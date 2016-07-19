@@ -1,7 +1,9 @@
 class Gutils {
 
   static togglePlayPause(timeline) {
-    timeline.paused(!timeline.paused());
+    let willBePaused = !timeline.paused();
+    timeline.paused(willBePaused);
+    return willBePaused;
   }
 
 }

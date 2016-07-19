@@ -1,12 +1,28 @@
 .gsapui__timeline__duration
+
 .gsapui__timeline
   .gsapui__timeline__track
   .gsapui__timeline__track__cursor.gsapui__timeline__marker
-ul.gsapui__btnlist
-  li.gsapui__btnlist__item
-    button(class="gsapui__btn material-icons" data-action="backward") fast_rewind
-  li.gsapui__btnlist__item
-    button(class="gsapui__btn material-icons" data-action="toggleplay") play_arrow
-  li.gsapui__btnlist__item
-    button(class="gsapui__btn material-icons" data-action="forward") fast_forward
+
+nav.gsapui__controls
+
+  ul.gsapui__btnlist.gsapui__playpause
+    li.gsapui__btnlist__item
+      button(class="gsapui__btn material-icons" data-action="backward") fast_rewind
+    li.gsapui__btnlist__item
+      button(class="gsapui__btn material-icons" data-action="toggleplay") pause
+    li.gsapui__btnlist__item
+      button(class="gsapui__btn material-icons" data-action="forward") fast_forward
+
+  ul.gsapui__btnlist.gsapui__timescale
+    li.gsapui__btnlist__item.gsapui__numberdial
+      button(class="gsapui__btn gsapui__btn--narrow arrow_drop_down--small material-icons" data-action="slower") remove
+      input(
+        class="gsapui__numberdial__input"
+        type="number"
+        value="1" step="0.125"
+        onkeyup="this.value=this.value.replace(/[^0-9.,]+/,'')"
+        data-action="timeScale"
+      )
+      button(class="gsapui__btn gsapui__btn--narrow material-icons" data-action="faster") add
 

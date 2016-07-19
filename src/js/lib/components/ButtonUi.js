@@ -17,15 +17,13 @@ class ButtonUi extends BaseComponent {
     this.elements.buttons.backward = qs('backward');
     this.elements.buttons.togglePlay = qs('toggleplay');
 
-    // // Add mousedown listener to all buttons to trigger flash animation
-    // for(let prop in this.elements.buttons) {
-    //   this.elements.buttons[prop].addEventListener('mousedown', () => { this.buttonFlash(); })
-    // }
+    this.elements.buttons.slower = qs('slower');
+    this.elements.buttons.faster = qs('faster');
+    this.elements.timeScale = qs('timeScale');
 
     // Toggle Play Pause
     this.elements.buttons.togglePlay.addEventListener('mouseup', evt => {
       this.controller.togglePlayPause();
-      this.togglePlayPause();
     });
 
     // Skip forward / backward
@@ -36,16 +34,29 @@ class ButtonUi extends BaseComponent {
       this.controller.skipBackward();
     });
 
-    // Switch current playstate
-    this.togglePlayPause();
+    // Skip forward / backward
+    this.elements.buttons.slower.addEventListener('mouseup', evt => {
+      this.controller.slower();
+    });
+    this.elements.buttons.faster.addEventListener('mouseup', evt => {
+      this.controller.faster();
+    });
+
+    this.elements.timeScale.addEventListener('click', evt => {
+      evt.target.select();
+    })
+    this.elements.timeScale.addEventListener('input', evt => {
+      this.controller.setTimeScaleTo(parseInt(evt.target.value));
+    })
+
   }
 
-  // buttonFlash() {
-  //   console.log('Button Flash');
-  // }
+  updateTimeScale(timeScale) {
+    this.elements.timeScale.value = timeScale;
+  }
 
-  togglePlayPause() {
-    this.elements.buttons.togglePlay.innerHTML = !this.timeline.paused() ? 'pause' : 'play_arrow';
+  setToPlay(isPlaying) {
+    this.elements.buttons.togglePlay.innerHTML = isPlaying ? 'play_arrow' : 'pause';
   }
 
 }
