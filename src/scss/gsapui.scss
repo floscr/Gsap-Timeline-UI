@@ -92,9 +92,17 @@ $btn-padding-side: 0.8em;
   border: none;
   background-color: transparent;
   color: $color-ui-font-color;
+  outline: none;
+
+  &--narrow {
+    $padding-side: $btn-padding-side * 0.55;
+    padding-left: $padding-side;
+    padding-right: $padding-side;
+  }
 
   &:hover {
     background-color: $color-ui-btn-hover;
+    cursor: pointer;
   }
 
   &:active {
