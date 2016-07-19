@@ -118,11 +118,15 @@
     font-family: monospace;
     text-align: center;
 
+    // Hide number dial on chrome
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button {
       -webkit-appearance: none;
       margin: 0;
     }
+
+    // Hide number dial on firefox
+    -moz-appearance:textfield;
 
     &:focus {
       outline: none;
