@@ -3,11 +3,12 @@ Gsap Timeline Ui
 
 A timeline interface for [Gsap].
 
-## Functionality
-
-### UI
+## Features
 
 Gsap Ui shows the current state of your gsap timeline to help when creating animations.
+
+The current timeline state will be saved in LocalStorage,    
+to allow for seamles animation code editing.
 
 ![UI Preview](./github/gsap-ui-preview.png)
 
