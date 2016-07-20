@@ -1,5 +1,10 @@
 # Change Log
 
+## [0.1.2] - 2016-07-20
+### Changed
+- Update version build commands
+- Update Layout
+
 ## [0.1.0] - 2016-07-19
 ### Fixed
 Update build
