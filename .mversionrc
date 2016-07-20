@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "preupdate": "gulp build --production; git commit -a -m 'Built version %s'",
+    "preupdate": "gulp build; git commit -am 'Built version %s'",
     "postcommit": "git push && git push --tags && npm publish"
   }
 }
