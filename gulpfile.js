@@ -65,7 +65,8 @@ gulp.task('compile-and-watch', function(cb) {
 
 // Build for production
 gulp.task('build', function(cb) {
-  runSequence('compile', cb);
+  config.watch = false;
+  runSequence(['compile'], cb);
 });
 
 // Build for production
