@@ -8,8 +8,8 @@ class ButtonUi extends BaseComponent {
 
   createUi() {
     // Shorthand for the data attribute query selector
-    var qs = function(attr) {
-      return this.querySelector(`[data-action=${attr}]`);
+    var qs = function(attr, dataAttr = 'action') {
+      return this.querySelector(`[data-${dataAttr}=${attr}]`);
     }.bind(this.elements.container);
 
     this.elements.buttons = {};
