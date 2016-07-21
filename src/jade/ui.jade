@@ -6,23 +6,29 @@
 
 nav.gsapui__controls
 
-  ul.gsapui__btnlist.gsapui__playpause
-    li.gsapui__btnlist__item
-      button(class="gsapui__btn material-icons" data-action="backward") fast_rewind
-    li.gsapui__btnlist__item
-      button(class="gsapui__btn material-icons" data-action="toggleplay") pause
-    li.gsapui__btnlist__item
-      button(class="gsapui__btn material-icons" data-action="forward") fast_forward
+  div.gsapui__controls__container
+    ul.gsapui__btnlist.gsapui__playpause
+      li.gsapui__btnlist__item
+        button(class="gsapui__btn material-icons" data-action="backward") fast_rewind
+      li.gsapui__btnlist__item
+        button(class="gsapui__btn material-icons" data-action="toggleplay") pause
+      li.gsapui__btnlist__item
+        button(class="gsapui__btn material-icons" data-action="forward") fast_forward
 
-  ul.gsapui__btnlist.gsapui__timescale
-    li.gsapui__btnlist__item.gsapui__numberdial
-      button(class="gsapui__btn gsapui__btn--narrow arrow_drop_down--small material-icons" data-action="slower") remove
-      input(
-        class="gsapui__numberdial__input"
-        type="number"
-        value="1" step="0.125"
-        onkeyup="this.value=this.value.replace(/[^0-9.,]+/,'')"
-        data-action="timeScale"
-      )
-      button(class="gsapui__btn gsapui__btn--narrow material-icons" data-action="faster") add
+    ul.gsapui__btnlist.gsapui__timescale
+      li.gsapui__btnlist__item.gsapui__numberdial
+        button(class="gsapui__btn gsapui__btn--narrow arrow_drop_down--small material-icons" data-action="slower") remove
+        input(
+          class="gsapui__numberdial__input"
+          type="number"
+          value="1" step="0.125"
+          onkeyup="this.value=this.value.replace(/[^0-9.,]+/,'')"
+          data-action="timeScale"
+        )
+        button(class="gsapui__btn gsapui__btn--narrow material-icons" data-action="faster") add
 
+  div.gsapui__controls--right
+    ul.gsapui__btnlist
+      li.gsapui__btnlist__item.gsapui__numberdial.gsapui__toggle
+        input(type="checkbox" name="isSavingPosition" class="gsapui--hidden")
+        label(class="gsapui__btn material-icons" data-option="isSavingPosition") autorenew

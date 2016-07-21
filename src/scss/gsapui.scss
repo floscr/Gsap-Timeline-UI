@@ -64,6 +64,10 @@
     background-color: $color-cursor;
   }
 
+  &--hidden {
+    display: none;
+  }
+
 }
 
 .gsapui__btnlist {
@@ -156,6 +160,12 @@ $btn-padding-side: 0.8em;
 .gsapui__controls {
   display: flex;
   position: relative;
+  justify-content: space-between;
+
+  &__container {
+    display: flex;
+  }
+
   &:before {
     content: '';
     position: absolute;
