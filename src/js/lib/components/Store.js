@@ -9,6 +9,7 @@ export default class Store {
       isPlaying: 'isPlaying',
       progress: 'progress',
       timeScale: 'timeScale',
+      isSavingPosition: 'isSavingPosition',
     }
 
     // Set up getters and setters for all props

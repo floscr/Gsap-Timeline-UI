@@ -70,7 +70,9 @@ export default class GsapUi {
     containerEl.setAttribute('ondragstart', 'return false;');
     containerEl.setAttribute('ondrop', 'return false;');
 
-    containerEl.innerHTML = template();
+    containerEl.innerHTML = template({
+      settings: this.controller._settings,
+    });
 
     this.config.rootElement.appendChild(containerEl);
     this.elements.container = containerEl;

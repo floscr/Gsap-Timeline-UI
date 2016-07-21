@@ -30,5 +30,11 @@ nav.gsapui__controls
   div.gsapui__controls--right
     ul.gsapui__btnlist
       li.gsapui__btnlist__item.gsapui__numberdial.gsapui__toggle
-        input(type="checkbox" id="isSavingPosition" class="gsapui--hidden")
-        label(class="gsapui__btn material-icons" for="isSavingPosition" data-option="isSavingPosition") restore
+        input(
+          type="checkbox"
+          id="isSavingPosition"
+          class="gsapui--hidden"
+          data-option="isSavingPosition"
+          checked=(settings.isSavingPosition ? "checked" : undefined)
+        )
+        label(class="gsapui__btn material-icons" for="isSavingPosition") restore

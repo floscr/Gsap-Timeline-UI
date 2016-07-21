@@ -21,6 +21,10 @@ class ButtonUi extends BaseComponent {
     this.elements.buttons.faster = qs('faster');
     this.elements.timeScale = qs('timeScale');
 
+    this.elements.toggles = {};
+    this.elements.toggles.savePosition = qs('isSavingPosition', 'option');
+    console.log(this.elements.toggles.savePosition );
+
     // Toggle Play Pause
     this.elements.buttons.togglePlay.addEventListener('mouseup', evt => {
       this.controller.togglePlayPause();
@@ -44,10 +48,14 @@ class ButtonUi extends BaseComponent {
 
     this.elements.timeScale.addEventListener('click', evt => {
       evt.target.select();
-    })
+    });
     this.elements.timeScale.addEventListener('input', evt => {
       this.controller.setTimeScaleTo(parseInt(evt.target.value));
-    })
+    });
+
+    this.elements.toggles.savePosition.addEventListener('change', evt => {
+      this.controller.isSavingPosition = evt.target.checked;
+    });
 
   }
 
