@@ -157,6 +157,15 @@ $btn-padding-side: 0.8em;
   }
 }
 
+.gsapui {
+  input[type=checkbox]:checked + label,
+  input[type=radio]:checked + label {
+    color: desaturate(lighten(#03A9F4, 20%), 5%);
+    background-color: rgba(white, 0.05);
+  }
+}
+
+
 .gsapui__controls {
   display: flex;
   position: relative;
