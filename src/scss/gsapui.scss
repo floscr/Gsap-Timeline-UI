@@ -20,7 +20,7 @@
     background-color: $color-timeline-track-bg;
   }
 
-  &__timeline__track {
+  &__track {
     position: absolute;
     top: 0;
     right: 0;
@@ -33,7 +33,7 @@
   }
 
   .gsapui__timeline:hover {
-    .gsapui__timeline__track__cursor {
+    .gsapui__track__cursor {
       opacity: 1;
     }
   }
@@ -46,7 +46,7 @@
     width: 1px;
   }
 
-  &__timeline__track__cursor {
+  &__track__cursor {
     opacity: 0;
     background-color: $color-cursor;
   }
