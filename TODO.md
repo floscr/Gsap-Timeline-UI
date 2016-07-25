@@ -4,11 +4,11 @@ GSAPUI TODO
 ## Features
 
 ### UI
-  - [ ] Rewind button
   - [ ] Save Position Checkmark
 
   - [ ] Prevent FOT from google icon font
 
+  - [x] Rewind button
 ### Publishing
   - [ ] Automatic Screenshots on version build
 
