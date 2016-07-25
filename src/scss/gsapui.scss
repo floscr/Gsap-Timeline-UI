@@ -1,4 +1,5 @@
 @import './core/colors';
+@import './core/resets';
 
 .gsapui {
   position: fixed;
@@ -9,22 +10,8 @@
   background: $color-ui-bg;
   font-size: 0.8em;
 
-  // Turn off user selection for the ui
-  // Autoprefixer doesnt capture this, so we have to add all the vendor prefixes.
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-
-  ::selection {
-    background: lighten(#FF2D64, 10%); /* WebKit/Blink Browsers */
-  }
-  ::-moz-selection {
-    background: #FF2D64; /* Gecko Browsers */
-  }
-
+  ::selection { background: $color-selection; }
+  ::-moz-selection { background: $color-selection; }
 
   &__timeline {
     position: relative;
