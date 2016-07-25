@@ -6,6 +6,8 @@
 $red: #DA0000;
 $blue: #16649A;
 
+$hotpink: lighten(#FF2D64, 10%);
+
 // Black & White
 $white: white;
 $black: #454545;
@@ -24,9 +26,11 @@ $turquoise: #7AC5C7;
 
 $color-cursor: $red;
 
+$color-selection: $hotpink;
+
 $color-ui-bg: darken(#222c33, 4%);
 $color-ui-font-color: lighten(#B5BBCB, 14%);
-$color-ui-border: rgba($bluegrey-10, 0.23);
+$color-ui-border: rgba($bluegrey-10, 0.15);
 $color-ui-btn-hover: rgba($bluegrey-10, 0.23);
 $color-ui-btn-focus: rgba($bluegrey-10, 0.33);
 

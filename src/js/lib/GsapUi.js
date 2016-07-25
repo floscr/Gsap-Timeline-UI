@@ -32,6 +32,11 @@ export default class GsapUi {
     // Set the first timeline as the active timeline
     this.activeTimeline = this.timelines[0];
 
+    this.controller = new Controller({
+      config: this.config,
+      activeTimeline: this.activeTimeline,
+    });
+
     this.createContainerNode();
 
     // Default config for all classes
@@ -40,7 +45,6 @@ export default class GsapUi {
       activeTimeline: this.activeTimeline,
       container: this.elements.container,
     }
-    this.controller = new Controller(componentConfig);
     componentConfig.controller = this.controller;
 
     this.components.timeline = new Timeline(componentConfig);
@@ -66,7 +70,9 @@ export default class GsapUi {
     containerEl.setAttribute('ondragstart', 'return false;');
     containerEl.setAttribute('ondrop', 'return false;');
 
-    containerEl.innerHTML = template();
+    containerEl.innerHTML = template({
+      settings: this.controller._settings,
+    });
 
     this.config.rootElement.appendChild(containerEl);
     this.elements.container = containerEl;

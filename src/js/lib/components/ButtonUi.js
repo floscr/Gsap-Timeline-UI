@@ -8,8 +8,8 @@ class ButtonUi extends BaseComponent {
 
   createUi() {
     // Shorthand for the data attribute query selector
-    var qs = function(attr) {
-      return this.querySelector(`[data-action=${attr}]`);
+    var qs = function(attr, dataAttr = 'action') {
+      return this.querySelector(`[data-${dataAttr}=${attr}]`);
     }.bind(this.elements.container);
 
     this.elements.buttons = {};
@@ -20,6 +20,10 @@ class ButtonUi extends BaseComponent {
     this.elements.buttons.slower = qs('slower');
     this.elements.buttons.faster = qs('faster');
     this.elements.timeScale = qs('timeScale');
+
+    this.elements.toggles = {};
+    this.elements.toggles.savePosition = qs('isSavingPosition', 'option');
+    console.log(this.elements.toggles.savePosition );
 
     // Toggle Play Pause
     this.elements.buttons.togglePlay.addEventListener('mouseup', evt => {
@@ -44,10 +48,14 @@ class ButtonUi extends BaseComponent {
 
     this.elements.timeScale.addEventListener('click', evt => {
       evt.target.select();
-    })
+    });
     this.elements.timeScale.addEventListener('input', evt => {
       this.controller.setTimeScaleTo(parseInt(evt.target.value));
-    })
+    });
+
+    this.elements.toggles.savePosition.addEventListener('change', evt => {
+      this.controller.isSavingPosition = evt.target.checked;
+    });
 
   }
 

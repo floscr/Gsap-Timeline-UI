@@ -1,5 +1,12 @@
 # Change Log
 
+## [0.1.2] - 2016-07-25
+### Added
+- Added save positon toggle
+
+### Changed
+- Cleanup css and markup
+
 ## [0.1.2] - 2016-07-20
 ### Changed
 - Update version build commands
