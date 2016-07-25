@@ -36,11 +36,11 @@ class Timeline extends BaseComponent {
 
   createUi() {
     this.elements.timeline =
-      this.elements.container.getElementsByClassName('gsapui__timeline')[0];
+      this.elements.container.getElementsByClassName('gsapui__track__container')[0];
     this.elements.cursor =
-      this.elements.container.getElementsByClassName('gsapui__timeline__track__cursor')[0];
+      this.elements.container.getElementsByClassName('gsapui__track__cursor')[0];
     this.elements.track =
-      this.elements.container.getElementsByClassName('gsapui__timeline__track')[0];
+      this.elements.container.getElementsByClassName('gsapui__track')[0];
   }
 
   addEventListeners() {

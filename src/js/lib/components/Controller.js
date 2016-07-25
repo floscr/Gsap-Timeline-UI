@@ -13,6 +13,24 @@ class Controller extends BaseComponent {
     this.components = {};
     this.addEventListeners();
     this.store = new Store();
+
+    this._settings = {
+      isSavingPosition: this.store.isSavingPosition || false,
+    };
+
+    this.settings = {
+      isSavingPosition: this.store.isSavingPosition || false,
+    };
+
+  }
+
+  get isSavingPosition() {
+    return this._settings.isSavingPosition;
+  }
+
+  set isSavingPosition(value) {
+    this._settings.isSavingPosition = value;
+    this.store.isSavingPosition = value;
   }
 
   /*--------------------------------------------------------*\
@@ -39,10 +57,12 @@ class Controller extends BaseComponent {
   }
 
   restoreTimelineState() {
-    if (this.store.progress) this.activeTimeline.progress(this.store.progress);
+    if (this.store.progress && this.isSavingPosition)
+      this.activeTimeline.progress(this.store.progress);
+
     if (this.store.timeScale) this.setTimeScaleTo(this.store.timeScale);
 
-    if (this.store.isPlaying !== undefined) {
+    if (this.store.isPlaying !== undefined && this.isSavingPosition) {
       this.setPlayState(this.store.isPlaying);
     }
   }

@@ -7,6 +7,8 @@ GSAPUI TODO
   - [ ] Rewind button
   - [ ] Save Position Checkmark
 
+  - [ ] Prevent FOT from google icon font
+
 ### Publishing
   - [ ] Automatic Screenshots on version build
 

@@ -1,4 +1,5 @@
 @import './core/colors';
+@import './core/resets';
 
 .gsapui {
   position: fixed;
@@ -9,31 +10,17 @@
   background: $color-ui-bg;
   font-size: 0.8em;
 
-  // Turn off user selection for the ui
-  // Autoprefixer doesnt capture this, so we have to add all the vendor prefixes.
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+  ::selection { background: $color-selection; }
+  ::-moz-selection { background: $color-selection; }
 
-  ::selection {
-    background: lighten(#FF2D64, 10%); /* WebKit/Blink Browsers */
-  }
-  ::-moz-selection {
-    background: #FF2D64; /* Gecko Browsers */
-  }
-
-
-  &__timeline {
+  &__track__container {
     position: relative;
     width: 100%;
     height: 40px;
     background-color: $color-timeline-track-bg;
   }
 
-  &__timeline__track {
+  &__track {
     position: absolute;
     top: 0;
     right: 0;
@@ -45,13 +32,13 @@
     box-shadow: inset 0 1px 0 0 rgba($bluegrey-90, 0.15);
   }
 
-  .gsapui__timeline:hover {
-    .gsapui__timeline__track__cursor {
+  .gsapui__track__container:hover {
+    .gsapui__track__cursor {
       opacity: 1;
     }
   }
 
-  &__timeline__marker {
+  &__track__marker {
     position: absolute;
     left: 0;
     top: 0;
@@ -59,9 +46,13 @@
     width: 1px;
   }
 
-  &__timeline__track__cursor {
+  &__track__cursor {
     opacity: 0;
     background-color: $color-cursor;
+  }
+
+  &--hidden {
+    display: none;
   }
 
 }
@@ -70,15 +61,14 @@
   display: flex;
   padding: 0;
   margin: 0;
+  border-left: 1px solid $color-ui-border;
+  border-right: 1px solid $color-ui-border;
 }
 
 .gsapui__btnlist__item {
   list-style-type: none;
   & + & {
     border-left: 1px solid $color-ui-border;
-  }
-  &:last-of-type {
-    border-right: 1px solid $color-ui-border;
   }
 }
 
@@ -153,9 +143,24 @@ $btn-padding-side: 0.8em;
   }
 }
 
+.gsapui {
+  input[type=checkbox]:checked + label,
+  input[type=radio]:checked + label {
+    color: desaturate(lighten(#03A9F4, 20%), 5%);
+    background-color: rgba(white, 0.05);
+  }
+}
+
+
 .gsapui__controls {
   display: flex;
   position: relative;
+  justify-content: space-between;
+
+  &__container {
+    display: flex;
+  }
+
   &:before {
     content: '';
     position: absolute;
@@ -163,7 +168,7 @@ $btn-padding-side: 0.8em;
     left: 0;
     right: 0;
     height: 1px;
-    background-color: darken(#373F46, 3%);
+    background-color: darken(#373F46, 4%);
   }
 }
 
