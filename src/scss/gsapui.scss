@@ -61,15 +61,14 @@
   display: flex;
   padding: 0;
   margin: 0;
+  border-left: 1px solid $color-ui-border;
+  border-right: 1px solid $color-ui-border;
 }
 
 .gsapui__btnlist__item {
   list-style-type: none;
   & + & {
     border-left: 1px solid $color-ui-border;
-  }
-  &:last-of-type {
-    border-right: 1px solid $color-ui-border;
   }
 }
 
