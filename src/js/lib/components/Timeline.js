@@ -1,4 +1,3 @@
-import TweenMax from 'TweenMax';
 import returnElementOffset from '../utils/returnElementOffset.js';
 
 import BaseComponent from './BaseComponent.js';
@@ -141,9 +140,7 @@ class Timeline extends BaseComponent {
   }
 
   update() {
-    TweenMax.set(this.elements.track, {
-      scaleX: this.progress,
-    });
+    this.elements.track.style.transform = 'scaleX('+this.progress+')'
   }
 
 }
