@@ -39,7 +39,7 @@ module.exports = {
       },
       {
         test: /\.html$/,
-        loader: 'html-loader'
+        loader: 'mustache'
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,

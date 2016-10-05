@@ -1,6 +1,8 @@
 import html from './test.html'
 
-console.log(html)
+const template = html({ foo: 'bar' })
+
+console.log(template)
 
 module.exports = {
   lol: 'hey',
