@@ -1,1 +1,5 @@
-console.log('setup done!')
+module.exports = {
+  init () {
+    console.log(TimelineMax)
+  }
+}
