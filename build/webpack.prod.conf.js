@@ -15,8 +15,6 @@ var webpackConfig = merge(baseWebpackConfig, {
   devtool: config.build.productionSourceMap ? '#source-map' : false,
   output: {
     path: config.build.assetsRoot,
-    libraryTarget: 'umd',
-    library: 'GsapUi',
     filename: utils.assetsPath('[name].js')
   },
   vue: {

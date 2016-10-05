@@ -3,3 +3,5 @@ module.exports = {
     console.log(TimelineMax)
   }
 }
+
+console.log('Hello World')
