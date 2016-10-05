@@ -20,6 +20,5 @@ document.addEventListener('DOMContentLoaded', () => {
       autoAlpha: 0
     })
 
-  // new window.GsapUi(tl);
-  // GsapUi.init()
+  GsapUi.init()
 })
