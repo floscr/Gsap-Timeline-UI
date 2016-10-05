@@ -8,7 +8,8 @@ module.exports = {
   extends: 'standard',
   // required to lint *.vue files
   globals: {
-    'TimelineMax': true
+    'TimelineMax': true,
+    'GsapUi': true
  },
   plugins: [
     'html'
