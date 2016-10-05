@@ -15,7 +15,8 @@
     "tool"
   ],
   "scripts": {
-    "dev": "node build/dev-server.js"
+    "dev": "node build/dev-server.js",
+    "build": "node build/build.js"
   },
   "repository": {
     "type": "git",
