@@ -1,0 +1,35 @@
+<div class="gsapui__timeline__duration"></div>
+<div class="gsapui__track__container">
+  <div class="gsapui__track"></div>
+  <div class="gsapui__track__cursor gsapui__track__marker"></div>
+</div>
+<nav class="gsapui__controls">
+  <div class="gsapui__controls__container">
+    <ul class="gsapui__btnlist gsapui__playpause">
+      <li class="gsapui__btnlist__item">
+        <button data-action="backward" class="gsapui__btn material-icons">fast_rewind</button>
+      </li>
+      <li class="gsapui__btnlist__item">
+        <button data-action="toggleplay" class="gsapui__btn material-icons">pause</button>
+      </li>
+      <li class="gsapui__btnlist__item">
+        <button data-action="forward" class="gsapui__btn material-icons">fast_forward</button>
+      </li>
+    </ul>
+    <ul class="gsapui__btnlist gsapui__timescale">
+      <li class="gsapui__btnlist__item gsapui__numberdial">
+        <button data-action="slower" class="gsapui__btn gsapui__btn--narrow arrow_drop_down--small material-icons">remove</button>
+        <input type="number" value="1" step="0.125" onkeyup="this.value=this.value.replace(/[^0-9.,]+/,'')" data-action="timeScale" class="gsapui__numberdial__input"/>
+        <button data-action="faster" class="gsapui__btn gsapui__btn--narrow material-icons">add</button>
+      </li>
+    </ul>
+  </div>
+  <div class="gsapui__controls--right">
+    <ul class="gsapui__btnlist">
+      <li class="gsapui__btnlist__item gsapui__toggle">
+        <input type="checkbox" id="isSavingPosition" data-option="isSavingPosition" class="gsapui--hidden"/>
+        <label for="isSavingPosition" class="gsapui__btn material-icons">restore</label>
+      </li>
+    </ul>
+  </div>
+</nav>
