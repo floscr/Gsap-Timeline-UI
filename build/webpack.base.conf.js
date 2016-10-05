@@ -16,7 +16,7 @@ module.exports = {
   },
   resolve: {
     extensions: ['', '.js'],
-    fallback: [path.join(__dirname, '../node_modules')],
+    fallback: [path.join(__dirname, '../node_modules')]
   },
   resolveLoader: {
     fallback: [path.join(__dirname, '../node_modules')]
@@ -44,18 +44,10 @@ module.exports = {
           limit: 10000,
           name: utils.assetsPath('img/[name].[hash:7].[ext]')
         }
-      },
+      }
     ]
   },
   eslint: {
     formatter: require('eslint-friendly-formatter')
-  },
-  vue: {
-    loaders: utils.cssLoaders(),
-    postcss: [
-      require('autoprefixer')({
-        browsers: ['last 2 versions']
-      })
-    ]
   }
 }
