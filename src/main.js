@@ -1,6 +1,11 @@
+import html from './test.html'
+
+console.log(html)
+
 module.exports = {
+  lol: 'hey',
   init () {
-    console.log(TimelineMax)
+    console.log(this.lol)
   }
 }
 
