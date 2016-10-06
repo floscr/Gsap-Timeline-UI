@@ -1,23 +1,7 @@
-import uiLoad from './ui.html'
-import style from './ui.scss'
+import GsapUi from './GsapUi.js'
 
-// const template = uiLoad({ foo: 'bar' })
-
-class GsapUi {
-
-  constructor () {
-    console.log('Constructed')
+module.exports = {
+  init () {
+    return new GsapUi(...arguments)
   }
-
-  testMessageApi () {
-    this._testMessage()
-  }
-
-  _testMessage () {
-    console.log('Method called')
-  }
-
 }
-
-/* eslint no-new: 0 */
-module.exports = new GsapUi()

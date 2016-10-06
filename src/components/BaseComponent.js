@@ -1,20 +1,20 @@
 class Controller {
 
-  constructor(options, ...args) {
-    this.activeTimeline = options.activeTimeline;
-    this.timeline = this.activeTimeline;
-    this.config = options.config;
+  constructor (options, ...args) {
+    this.activeTimeline = options.activeTimeline
+    this.timeline = this.activeTimeline
+    this.config = options.config
     if (options.controller) {
-      this.controller = options.controller;
+      this.controller = options.controller
     }
     this.elements = {
       container: options.container,
-    };
-    this.init(options, args);
+    }
+    this.init(options, args)
   }
 
-  init(options, ...args) {
-    console.log(options, args);
+  init (options, ...args) {
+    console.log(options, args)
   }
 
 }
