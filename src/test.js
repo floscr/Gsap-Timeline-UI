@@ -20,5 +20,5 @@ document.addEventListener('DOMContentLoaded', () => {
       autoAlpha: 0
     })
 
-  console.log(GsapUi)
+  GsapUi.add(tl).pause()
 })
