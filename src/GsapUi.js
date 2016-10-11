@@ -78,6 +78,8 @@ export default class GsapUi {
 
     // Set the first timeline as the active timeline
     this.activeTimeline = this.timelines[0]
+
+    return this
   }
 
   /**
