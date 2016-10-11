@@ -2,61 +2,78 @@
 import WebFont from 'webfontloader'
 
 // Components
-import Timeline from './components/Timeline.js'
-import ButtonUi from './components/ButtonUi.js'
-import Controller from './components/Controller.js'
+// import Timeline from './components/Timeline.js'
+// import ButtonUi from './components/ButtonUi.js'
+// import Controller from './components/Controller.js'
+
+import _ from 'lodash'
 
 // Styles and templates
 import uiTemplate from './assets/ui.html'
 // import styles from '../../scss/gsapui.scss'
 
+import config from './config'
+
 export default class GsapUi {
 
-  constructor (timelines) {
-    this.config = {
-      rootElement: document.body,
-      skipBy: 0.01, // Skip timeline by x percent
-      timeScaleAmount: 0.1, // Number to increase/decrease speed by
-    }
+  constructor (timelines, customConfig = {}) {
+    this.config = config
 
     this.timelines = []
+    this.activeTimeline = {}
+
     this.elements = {}
     this.components = {}
 
-    // Accept single and multiple timeline objects
-    if (timelines instanceof Array) {
-      this.timelines.push(...timelines)
-    } else {
-      this.timelines.push(timelines)
-    }
+    // Merge the predefined config and the passed config object
+    _.merge(this.config, customConfig)
+
+    // this.controller = new Controller({
+    //   config: this.config,
+    //   activeTimeline: this.activeTimeline,
+    // })
+
+    this._setupPublicAPI()
+
+    // this.createContainerNode()
+    //
+    // // Default config for all classes
+    // let componentConfig = {
+    //   config: this.config,
+    //   activeTimeline: this.activeTimeline,
+    //   container: this.elements.container,
+    // }
+    // componentConfig.controller = this.controller
+    //
+    // this.components.timeline = new Timeline(componentConfig)
+    // this.components.buttonUi = new ButtonUi(componentConfig)
+    //
+    // this.controller.components.timeline = this.components.timeline
+    // this.controller.components.buttonUi = this.components.buttonUi
+    //
+    // this.controller.restoreTimelineState()
+    // this.update()
+    //
+    // this.addEventListeners()
+  }
+
+  /**
+   * Set up the public api methods.
+   */
+  _setupPublicAPI () {
+    this.add = this._addTimeline
+  }
+
+  /**
+   * Add a timeline to GsapUi
+   */
+  _addTimeline (timeline) {
+    this.timelines.push(timeline)
+
     // Set the first timeline as the active timeline
     this.activeTimeline = this.timelines[0]
 
-    this.controller = new Controller({
-      config: this.config,
-      activeTimeline: this.activeTimeline,
-    })
-
-    this.createContainerNode()
-
-    // Default config for all classes
-    let componentConfig = {
-      config: this.config,
-      activeTimeline: this.activeTimeline,
-      container: this.elements.container,
-    }
-    componentConfig.controller = this.controller
-
-    this.components.timeline = new Timeline(componentConfig)
-    this.components.buttonUi = new ButtonUi(componentConfig)
-
-    this.controller.components.timeline = this.components.timeline
-    this.controller.components.buttonUi = this.components.buttonUi
-
-    this.controller.restoreTimelineState()
-    this.update()
-
-    this.addEventListeners()
+    console.log(this.activeTimeline)
   }
 
   createContainerNode () {
