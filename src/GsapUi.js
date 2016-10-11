@@ -72,8 +72,26 @@ export default class GsapUi {
 
     // Set the first timeline as the active timeline
     this.activeTimeline = this.timelines[0]
+  }
 
-    console.log(this.activeTimeline)
+  /**
+   * Set the active timeline play state to a new state.
+   * When no new state argument is given, toggle the current play state.
+   * @par newState 'play', 'pause'
+   */
+  _togglePlayPause (newState = undefined) {
+    if (!this.activeTimeline) return
+
+    if (newState === 'pause') {
+      this.activeTimeline.pause()
+      return
+    } else if (newState === 'play') {
+      this.activeTimeline.play()
+      return
+    }
+
+    // Toggle play pause
+    this.activeTimeline.paused(this.activeTimeline.paused)
   }
 
   createContainerNode () {
