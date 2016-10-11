@@ -61,7 +61,13 @@ export default class GsapUi {
    * Set up the public api methods.
    */
   _setupPublicAPI () {
+    // Add timelines
     this.add = this._addTimeline
+
+    // Play / Pause Toggling
+    this.pause = () => this._togglePlayPause('pause')
+    this.play = () => this._togglePlayPause('play')
+    this.toggle = this._togglePlayPause
   }
 
   /**
