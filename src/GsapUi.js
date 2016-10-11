@@ -99,7 +99,8 @@ export default class GsapUi {
     }
 
     // Toggle play pause
-    this.activeTimeline.paused(this.activeTimeline.paused)
+    console.log(this.activeTimeline.paused())
+    this.activeTimeline.paused(!this.activeTimeline.paused())
   }
 
   createContainerNode () {
