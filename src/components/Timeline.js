@@ -90,8 +90,10 @@ class Timeline extends BaseComponent {
     let parentPosition = returnElementOffset(this.elements.timeline)
     let xPosition = evt.clientX - parentPosition.x
     // Disallow scrubbing over/under the window length
-    if (xPosition < this.elements.timeline.offsetWidth && xPosition > 0)
+    if (xPosition < this.elements.timeline.offsetWidth && xPosition > 0) {
+      this.timeline.progress(xPosition / this.elements.timeline.offsetWidth)
       this.updateCursor(evt)
+    }
   }
 
   stopScrubbing (evt) {
