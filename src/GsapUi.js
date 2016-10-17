@@ -10,7 +10,7 @@ import _ from 'lodash'
 
 // Styles and templates
 import uiTemplate from './assets/ui.html'
-// import styles from '../../scss/gsapui.scss'
+import styles from './assets/ui.scss' // eslint-disable-line no-unused-vars
 
 import config from './config'
 
