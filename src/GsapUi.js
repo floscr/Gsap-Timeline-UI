@@ -35,7 +35,7 @@ export default class GsapUi {
 
     this._setupPublicAPI()
 
-    // this.createContainerNode()
+    this._createContainerNode()
     //
     // // Default config for all classes
     // let componentConfig = {
@@ -99,11 +99,10 @@ export default class GsapUi {
     }
 
     // Toggle play pause
-    console.log(this.activeTimeline.paused())
     this.activeTimeline.paused(!this.activeTimeline.paused())
   }
 
-  createContainerNode () {
+  _createContainerNode () {
     // Create container element and add template from jade
     let containerEl = document.createElement('div')
     containerEl.id = 'gsapui'
@@ -114,7 +113,7 @@ export default class GsapUi {
     containerEl.setAttribute('ondrop', 'return false')
 
     containerEl.innerHTML = uiTemplate({
-      settings: this.controller._settings,
+      // settings: this.controller._settings,
     })
 
     this.config.rootElement.appendChild(containerEl)
