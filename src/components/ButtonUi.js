@@ -23,7 +23,6 @@ class ButtonUi extends BaseComponent {
 
     this.elements.toggles = {}
     this.elements.toggles.savePosition = qs('isSavingPosition', 'option')
-    console.log(this.elements.toggles.savePosition)
 
     // Toggle Play Pause
     this.elements.buttons.togglePlay.addEventListener('mouseup', evt => {
