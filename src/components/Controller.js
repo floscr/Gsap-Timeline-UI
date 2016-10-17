@@ -1,11 +1,9 @@
 import Store from './Store.js'
 
-import round from 'lodash/math/round'
+import _ from 'lodash'
 
 import BaseComponent from './BaseComponent.js'
 import GUtils from '../utils/Gutils.js'
-
-let lastTimeScale
 
 class Controller extends BaseComponent {
 
@@ -38,16 +36,16 @@ class Controller extends BaseComponent {
 
   listenForKeyboardShortcuts (evt) {
     switch (evt.keyCode) {
-      case 32: this.togglePlayPause() break // Spacebar
+      case 32: this.togglePlayPause(); break // Spacebar
 
-      case 37: this.skipBackward() break // ←
-      case 39: this.skipForward() break // →
+      case 37: this.skipBackward(); break // ←
+      case 39: this.skipForward(); break // →
 
-      case 82: this.setTimeScaleTo(1) break // r
-      case 43: this.faster() break // +
-      case 187: this.faster() break // =
-      case 189: this.slower() break // →
-      case 109: this.slower() break // →
+      case 82: this.setTimeScaleTo(1); break // r
+      case 43: this.faster(); break // +
+      case 187: this.faster(); break // =
+      case 189: this.slower(); break // →
+      case 109: this.slower(); break // →
     }
   }
 
@@ -57,14 +55,13 @@ class Controller extends BaseComponent {
 
     if (this.store.timeScale) this.setTimeScaleTo(this.store.timeScale)
 
-    if (this.store.isPlaying !== undefined && this.isSavingPosition) {
+    if (this.store.isPlaying !== undefined && this.isSavingPosition)
       this.setPlayState(this.store.isPlaying)
-    }
   }
 
-  /*--------------------------------------------------------*\
-   * Timeline Functions
-   *--------------------------------------------------------*/
+  // --------------------------------------------------------------------------
+  // Timeline Functions
+  // --------------------------------------------------------------------------
 
   skip (direction = 1) {
     let progress = this.timeline.progress()
@@ -87,7 +84,7 @@ class Controller extends BaseComponent {
   }
 
   timeScale (amount) {
-    let timeScale = round(this.activeTimeline.timeScale() + amount, 4)
+    let timeScale = _.round(this.activeTimeline.timeScale() + amount, 4)
     this.activeTimeline.timeScale(timeScale)
     this.updateTimeScale(timeScale)
   }

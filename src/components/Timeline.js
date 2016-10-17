@@ -63,9 +63,7 @@ class Timeline extends BaseComponent {
   }
 
   addMarker (evt, kind) {
-    if (this.mouseIsOver) {
-      this.markers[kind] = this.currentX
-    }
+    if (this.mouseIsOver) this.markers[kind] = this.currentX
     console.log(this.markers)
   }
 
@@ -92,10 +90,8 @@ class Timeline extends BaseComponent {
     let parentPosition = returnElementOffset(this.elements.timeline)
     let xPosition = evt.clientX - parentPosition.x
     // Disallow scrubbing over/under the window length
-    if (xPosition < this.elements.timeline.offsetWidth && xPosition > 0) {
-      // tl.progress(xPosition / this.elements.timeline.offsetWidth)
+    if (xPosition < this.elements.timeline.offsetWidth && xPosition > 0)
       this.updateCursor(evt)
-    }
   }
 
   stopScrubbing (evt) {
@@ -107,9 +103,7 @@ class Timeline extends BaseComponent {
     this.stopFollowCursor()
 
     document.body.style.cursor = 'default'
-    if (this.wasPlaying) {
-      this.activeTimeline.play()
-    }
+    if (this.wasPlaying) this.activeTimeline.play()
   }
 
   changeMouseCursor () {

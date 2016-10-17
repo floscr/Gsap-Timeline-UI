@@ -14,6 +14,9 @@ module.exports = {
     library: 'GsapUi',
     filename: '[name].js'
   },
+  externals: {
+    'TweenMax': 'TweenMax',
+  },
   resolve: {
     extensions: ['', '.js'],
     fallback: [path.join(__dirname, '../node_modules')]

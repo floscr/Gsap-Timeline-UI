@@ -2,9 +2,9 @@
 import WebFont from 'webfontloader'
 
 // Components
-// import Timeline from './components/Timeline.js'
-// import ButtonUi from './components/ButtonUi.js'
-// import Controller from './components/Controller.js'
+import Timeline from './components/Timeline.js'
+import ButtonUi from './components/ButtonUi.js'
+import Controller from './components/Controller.js'
 
 import _ from 'lodash'
 
@@ -28,33 +28,7 @@ export default class GsapUi {
     // Merge the predefined config and the passed config object
     _.merge(this.config, customConfig)
 
-    // this.controller = new Controller({
-    //   config: this.config,
-    //   activeTimeline: this.activeTimeline,
-    // })
-
     this._setupPublicAPI()
-
-    this._createContainerNode()
-    //
-    // // Default config for all classes
-    // let componentConfig = {
-    //   config: this.config,
-    //   activeTimeline: this.activeTimeline,
-    //   container: this.elements.container,
-    // }
-    // componentConfig.controller = this.controller
-    //
-    // this.components.timeline = new Timeline(componentConfig)
-    // this.components.buttonUi = new ButtonUi(componentConfig)
-    //
-    // this.controller.components.timeline = this.components.timeline
-    // this.controller.components.buttonUi = this.components.buttonUi
-    //
-    // this.controller.restoreTimelineState()
-    // this.update()
-    //
-    // this.addEventListeners()
   }
 
   /**
@@ -78,6 +52,30 @@ export default class GsapUi {
 
     // Set the first timeline as the active timeline
     this.activeTimeline = this.timelines[0]
+
+    this.controller = new Controller({
+      config: this.config,
+      activeTimeline: this.activeTimeline,
+    })
+
+    this._createContainerNode()
+
+    // Default config for all classes
+    let componentConfig = {
+      config: this.config,
+      activeTimeline: this.activeTimeline,
+      container: this.elements.container,
+    }
+    componentConfig.controller = this.controller
+    this.components.timeline = new Timeline(componentConfig)
+    this.components.buttonUi = new ButtonUi(componentConfig)
+
+    this.controller.components.timeline = this.components.timeline
+    this.controller.components.buttonUi = this.components.buttonUi
+    this.controller.restoreTimelineState()
+
+    this.update()
+    this.addEventListeners()
 
     return this
   }

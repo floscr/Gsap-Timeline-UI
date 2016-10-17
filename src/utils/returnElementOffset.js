@@ -1,4 +1,4 @@
-export default function returnElementOffset(element) {
+export default function returnElementOffset (element) {
   let xPosition = 0
   let yPosition = 0
   while (element) {

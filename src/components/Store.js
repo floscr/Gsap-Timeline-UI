@@ -13,9 +13,7 @@ export default class Store {
     }
 
     // Set up getters and setters for all props
-    for (let prop in this.props) {
-      this.register(prop)
-    }
+    for (let prop in this.props) this.register(prop)
   }
 
   /**
