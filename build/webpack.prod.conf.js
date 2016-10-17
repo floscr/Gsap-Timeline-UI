@@ -15,7 +15,7 @@ var webpackConfig = merge(baseWebpackConfig, {
   devtool: config.build.productionSourceMap ? '#source-map' : false,
   output: {
     path: config.build.assetsRoot,
-    filename: utils.assetsPath('[name].js')
+    filename: utils.assetsPath('gsapui.js')
   },
   vue: {
     loaders: utils.cssLoaders({
