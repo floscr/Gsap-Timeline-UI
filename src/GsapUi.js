@@ -111,8 +111,12 @@ export default class GsapUi {
     containerEl.setAttribute('ondrop', 'return false')
 
     containerEl.innerHTML = uiTemplate({
-      // settings: this.controller._settings,
+      settings: this.controller.settings,
     })
+
+    // Restore the save position toggle state
+    if (this.controller.isSavingPosition)
+      containerEl.querySelector('#isSavingPosition').setAttribute('checked', 'checked')
 
     this.config.rootElement.appendChild(containerEl)
     this.elements.container = containerEl
