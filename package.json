@@ -5,7 +5,7 @@
   "license": "MIT",
   "homepage": "https://github.com/floscr/Gsap-Timeline-UI",
   "description": "A timeline controller for GSAP",
-  "main": "build/gsapui.min.js",
+  "main": "dist/static/gsapui.js",
   "keywords": [
     "gsap",
     "timeline",
