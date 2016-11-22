@@ -25,6 +25,14 @@ const mutations = {
     state.all.push(timeline)
   },
 
+  [types.PLAY] (state) {
+    state.active.reference.paused(false)
+  },
+
+  [types.PAUSE] (state) {
+    state.active.reference.paused(true)
+  },
+
 }
 
 export default {

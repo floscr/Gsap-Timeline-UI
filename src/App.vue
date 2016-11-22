@@ -1,20 +1,24 @@
 <style scoped>
-  .duration {
+  .container {
+    bottom: 0;
+    left: 0;
     position: absolute;
   }
 </style>
 
 <template>
-  <div id="gsapui">
+  <div class="container" id="gsapui">
     <div class="duration">{{ niceProgress }} / {{ duration }}</div>
+    <button @click="togglePlayPause">PlayPause</button>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'app',
+
   computed: {
     ...mapGetters([
       'duration',
@@ -22,5 +26,12 @@ export default {
       'activeTimeline'
     ]),
   },
+
+  methods: {
+    ...mapActions([
+      'togglePlayPause'
+    ]),
+  },
+
 }
 </script>
