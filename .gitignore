@@ -5,3 +5,4 @@ test/assets/js/gsapui.js
 *.map
 .eslintrc_files
 _icons-generated.scss
+tags*
