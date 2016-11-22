@@ -1,3 +1,5 @@
+import WebFont from 'webfontloader'
+
 import Vue from 'vue'
 
 Vue.config.debug = true
@@ -18,6 +20,13 @@ const GsapUi = new Vue({
     })
   },
   store
+})
+
+// Load google material icon font
+WebFont.load({
+  google: {
+    families: ['Material Icons'],
+  },
 })
 
 // Public API
