@@ -1,26 +1,23 @@
-TweenLite.ticker.fps(60);
+TweenLite.ticker.fps(60)
 
-var green = document.getElementById('green');
+var green = document.getElementById('green')
 
-var tl = new TimelineMax({
-  repeat: -1
-});
-
-tl
+var tl = new TimelineMax()
   .from(green, 2, {
     scale: 0.2,
     autoAlpha: 0
   })
   .to(green, 2, {
-    x: "100%"
+    x: '100%'
   })
   .to(green, 0.5, {
-    x: "0%"
+    x: '0%'
   })
   .to(green, 1, {
     autoAlpha: 0
   })
-;
+  .repeat(-1)
+
 
 document.addEventListener('DOMContentLoaded', () => {
   GsapUi.add(tl)
