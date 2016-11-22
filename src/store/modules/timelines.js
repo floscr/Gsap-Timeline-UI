@@ -1,13 +1,14 @@
 import * as types from '../mutation-types'
 
 const state = {
-  main: 0
+  active: {},
+  all: [],
 }
 
 const mutations = {
-  // [types.DECREMENT_MAIN_COUNTER] (state) {
-  //   state.main--
-  // },
+  [types.ADD_TIMELINE] (state, timeline) {
+    state.all.push(timeline)
+  },
 }
 
 export default {

@@ -10,5 +10,5 @@ export default new Vuex.Store({
   actions,
   getters,
   modules,
-  strict: true
+  strict: false // Timelines get modified from outside
 })

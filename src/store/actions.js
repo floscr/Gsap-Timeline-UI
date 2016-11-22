@@ -1,5 +1,5 @@
 import * as types from './mutation-types'
 
-// export const decrementMain = ({ commit }) => {
-//   commit(types.DECREMENT_MAIN_COUNTER)
-// }
+export const addTimeline = ({ commit }, timeline) => {
+  commit(types.ADD_TIMELINE, timeline)
+}
