@@ -1,1 +1,1 @@
-// export const mainCounter = state => state.counters.main
+export const activeTimeline = state => state.timelines.active
