@@ -1,6 +1,6 @@
 <style scoped>
   .duration {
-    display: block;
+    position: absolute;
   }
 </style>
 
