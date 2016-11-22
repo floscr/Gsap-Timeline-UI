@@ -8,6 +8,7 @@
   right: 0;
   left: 0;
 
+  color: white;
   background: $color-ui-bg;
   font-size: 0.8em;
 
@@ -22,12 +23,14 @@
   <div class="container" id="gsapui">
     <div class="duration">{{ niceProgress }} / {{ duration }}</div>
     <button @click="togglePlayPause">PlayPause</button>
+    <timeline-track></timeline-track>
   </div>
 </template>
 
 <script>
 import Mousetrap from 'mousetrap'
 import { mapGetters, mapActions } from 'vuex'
+import Track from './components/Track.vue'
 
 export default {
   name: 'GsapUi',
@@ -52,6 +55,10 @@ export default {
     ...mapActions([
       'togglePlayPause'
     ]),
+  },
+
+  components: {
+    'timeline-track': Track,
   },
 
 }
