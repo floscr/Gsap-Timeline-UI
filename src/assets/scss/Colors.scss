@@ -1,0 +1,38 @@
+// ----------------------------------------------------------------------------
+// Base Colors
+// ----------------------------------------------------------------------------
+
+// Theme Colors
+$red: #DA0000;
+$blue: #16649A;
+
+$hotpink: lighten(#FF2D64, 10%);
+
+// Black & White
+$white: white;
+$black: #454545;
+
+// Blue Grey Shades
+$bluegrey-10: #99A2AF;
+$bluegrey-15: #99A2AE;
+$bluegrey-70: #2E3840;
+$bluegrey-90: #222C33;
+
+$turquoise: #7AC5C7;
+
+// ----------------------------------------------------------------------------
+// Color access variables
+// ----------------------------------------------------------------------------
+
+$color-cursor: $red;
+
+$color-selection: $hotpink;
+
+$color-ui-bg: darken(#222c33, 4%);
+$color-ui-font-color: lighten(#B5BBCB, 14%);
+$color-ui-border: rgba($bluegrey-10, 0.15);
+$color-ui-btn-hover: rgba($bluegrey-10, 0.23);
+$color-ui-btn-focus: rgba($bluegrey-10, 0.33);
+
+$color-timeline-track-bg: darken($color-ui-bg, 3%);
+$color-timeline-track: saturate(lighten($bluegrey-10, 0.10%), 10%);

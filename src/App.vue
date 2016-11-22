@@ -1,9 +1,20 @@
 <style lang="scss" scoped>
-  .container {
-    bottom: 0;
-    left: 0;
-    position: absolute;
+@import './assets/scss/Colors.scss';
+@import './assets/scss/Reset.scss';
+.container {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+
+  background: $color-ui-bg;
+  font-size: 0.8em;
+
+  ::selection,
+  ::moz-selection {
+    background: $color-selection;
   }
+}
 </style>
 
 <template>
