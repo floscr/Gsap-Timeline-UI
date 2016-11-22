@@ -5,25 +5,19 @@ Vue.config.debug = true
 // Vuex
 import store from './store'
 
-// Components
+// Main App component
 import App from './App.vue'
 
-class GsapUi {
+const GsapUi = new Vue({
+  el: '#app',
+  render: createElement => createElement(App),
+  methods: {
+    add (timeline) {
+      console.log(timeline)
+    },
+  },
+  store
+})
 
-  constructor () {
-    this.vue = new Vue({
-      el: '#app',
-      render: createElement => createElement(App),
-      methods: {
-        hello () {
-          console.log('Hello World')
-        },
-      },
-      store
-    })
-    this.vue.hello()
-  }
-
-}
-
-export default new GsapUi()
+// Public API
+export function add () { GsapUi.add(...arguments) }
