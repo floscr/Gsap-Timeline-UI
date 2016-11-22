@@ -8,9 +8,22 @@ import store from './store'
 // Components
 import App from './App.vue'
 
-/* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  render: createElement => createElement(App),
-  store
-})
+class GsapUi {
+
+  constructor () {
+    this.vue = new Vue({
+      el: '#app',
+      render: createElement => createElement(App),
+      methods: {
+        hello () {
+          console.log('Hello World')
+        },
+      },
+      store
+    })
+    this.vue.hello()
+  }
+
+}
+
+export default new GsapUi()
