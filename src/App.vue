@@ -1,6 +1,7 @@
 <style lang="scss" scoped>
 @import './assets/scss/Colors.scss';
 @import './assets/scss/Reset.scss';
+
 .container {
   position: fixed;
   bottom: 0;
@@ -29,7 +30,7 @@ import Mousetrap from 'mousetrap'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
-  name: 'app',
+  name: 'GsapUi',
 
   mounted () {
     this.setupShortcuts()
