@@ -6,7 +6,6 @@
 
 <template>
   <div id="gsapui">
-    Hello world
     <div class="duration">{{ niceProgress }} / {{ duration }}</div>
   </div>
 </template>
