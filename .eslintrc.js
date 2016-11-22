@@ -27,7 +27,7 @@ module.exports = {
     'no-new': 0,
     'no-multiple-empty-lines': 0,
     'padded-blocks': 0,
-    'no-unused-vars': 1,
+    'no-unused-vars': 0,
     'no-undef': 0,
   }
 }
