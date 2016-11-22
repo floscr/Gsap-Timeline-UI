@@ -22,4 +22,6 @@ tl
   })
 ;
 
-// new window.GsapUi(tl);
+document.addEventListener('DOMContentLoaded', () => {
+  GsapUi.add(tl)
+})
