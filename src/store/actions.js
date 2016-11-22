@@ -8,7 +8,7 @@ export const addTimeline = ({ commit, state }, timeline) => {
 }
 
 export const togglePlayPause = ({ commit, state }) => {
-  if (state.timelines.active.reference.paused() === true) {
+  if (state.timelines.active.gsap.paused() === true) {
     commit(types.PLAY)
   } else {
     commit(types.PAUSE)

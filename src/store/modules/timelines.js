@@ -2,7 +2,7 @@ import * as types from '../mutation-types'
 
 const state = {
   active: {
-    reference: undefined,
+    gsap: undefined,
     progress: 0,
     duration: 0,
   },
@@ -12,7 +12,7 @@ const state = {
 const mutations = {
 
   [types.SET_ACTIVE_TIMELINE] (state, timeline) {
-    state.active.reference = timeline
+    state.active.gsap = timeline
 
     // Subscribe to Gsap timeline changes
     timeline.eventCallback('onUpdate', () => {
@@ -26,11 +26,11 @@ const mutations = {
   },
 
   [types.PLAY] (state) {
-    state.active.reference.paused(false)
+    state.active.gsap.paused(false)
   },
 
   [types.PAUSE] (state) {
-    state.active.reference.paused(true)
+    state.active.gsap.paused(true)
   },
 
 }
