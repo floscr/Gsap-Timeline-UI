@@ -14,10 +14,15 @@
 </template>
 
 <script>
+import Mousetrap from 'mousetrap'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'app',
+
+  mounted () {
+    this.setupShortcuts()
+  },
 
   computed: {
     ...mapGetters([
@@ -28,6 +33,10 @@ export default {
   },
 
   methods: {
+    setupShortcuts () {
+      Mousetrap.bind('space', () => { this.togglePlayPause() })
+    },
+
     ...mapActions([
       'togglePlayPause'
     ]),
