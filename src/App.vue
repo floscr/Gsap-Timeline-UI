@@ -1,4 +1,4 @@
-<style scoped>
+<style lang="scss" scoped>
   .container {
     bottom: 0;
     left: 0;
