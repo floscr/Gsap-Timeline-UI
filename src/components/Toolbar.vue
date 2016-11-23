@@ -1,6 +1,6 @@
 <template>
   <div class="toolbar">
-    <button class="material-icons" @click="togglePlayPause">{{ playStateText }}</button>
+    <button class="material-icons" @click="togglePlayPause">{{ isPlaying ? 'pause' :'play_arrow' }}</button>
   </div>
 </template>
 
@@ -10,9 +10,6 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
 
   computed: {
-    playStateText () {
-      return this.isPlaying ? 'pause' : 'play_arrow'
-    },
     ...mapGetters([
       'isPlaying',
     ]),
