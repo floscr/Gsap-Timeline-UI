@@ -17,7 +17,6 @@
 
 <style>
   .gsapui {
-    cursor: default;
     ::selection,
     ::moz-selection {
       background: $color-selection;

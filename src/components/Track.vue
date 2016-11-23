@@ -53,7 +53,6 @@
     @mousedown='startScrubbing'
     @mouseover="mouseOver = true"
     @mouseleave="mouseOver = false"
-    v-bind:style="{ cursor: mouseDown ? 'col-resize' : 'default' }"
     class="container"
     >
     <div>{{ value }}</div>
@@ -88,7 +87,7 @@ export default {
       initialValue: 0,
       steps: 1,
       value: 0,
-      timelineElement: undefined,
+      htmlEl: document.getElementsByTagName('html')[0],
     }
   },
 
@@ -111,11 +110,13 @@ export default {
       this.scrub(event)
       document.addEventListener('mouseup', this.stopScrubbing)
       this.mouseDown = true
+      this.htmlEl.style.cursor = 'col-resize'
     },
 
     stopScrubbing (event) {
       this.mouseDown = false
       document.removeEventListener('mouseup', this.stopScrubbing)
+      this.htmlEl.style.cursor = 'default'
     },
 
     scrub (event) {
