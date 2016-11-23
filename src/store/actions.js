@@ -2,11 +2,18 @@ import * as types from './mutation-types'
 
 import Vue from 'vue'
 
+/**
+ * Add timeline to the store and set is active
+ * @param {obj} timeline Gsap Timeline Object
+ */
 export const addTimeline = ({ commit, state }, timeline) => {
   commit(types.ADD_TIMELINE, timeline)
   commit(types.SET_ACTIVE_TIMELINE, timeline)
 }
 
+/**
+ * Toggle play/pause on the current timeline
+ */
 export const togglePlayPause = ({ commit, state }) => {
   if (state.timelines.active.gsap.paused() === true) {
     commit(types.PLAY)
@@ -15,6 +22,10 @@ export const togglePlayPause = ({ commit, state }) => {
   }
 }
 
+/**
+ * Set the active timeline progress state
+ * @param {int} progress Number from 0 - 1
+ */
 export const setTimelineProgress = ({ commit, state }, progress) => {
   commit(types.SET_PROGRESS, progress)
 }
