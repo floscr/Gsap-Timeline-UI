@@ -48,7 +48,12 @@ export default {
 
   methods: {
     setupShortcuts () {
-      Mousetrap.bind('space', () => { this.togglePlayPause() })
+      Mousetrap.bind('space', event => {
+        // When a toolbar button was clicked, the focus stays on the element
+        // So we prevent triggering the playPause AND the button action
+        event.preventDefault()
+        this.togglePlayPause()
+      })
       Mousetrap.bind('right', () => { this.skipForward() })
       Mousetrap.bind('left', () => { this.skipBackward() })
     },
