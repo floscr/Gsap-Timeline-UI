@@ -1,6 +1,5 @@
 <template>
   <div class="toolbar">
-    <div class="duration">{{ niceProgress }} / {{ duration }}</div>
     <button @click="togglePlayPause">{{ playStateText }}</button>
   </div>
 </template>
@@ -16,9 +15,6 @@ export default {
     },
     ...mapGetters([
       'isPlaying',
-      'duration',
-      'niceProgress',
-      'activeTimeline'
     ]),
   },
 
