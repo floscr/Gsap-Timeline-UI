@@ -1,11 +1,13 @@
 <template>
   <div class="toolbar">
-    <button class="material-icons" @click="togglePlayPause">{{ isPlaying ? 'pause' :'play_arrow' }}</button>
+    <ui-button :click="togglePlayPause" :text="isPlaying ? 'pause' :'play_arrow'" ></ui-button>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+
+import Button from './Toolbar/Button.vue'
 
 export default {
 
@@ -19,7 +21,11 @@ export default {
     ...mapActions([
       'togglePlayPause'
     ]),
-  }
+  },
+
+  components: {
+    'ui-button': Button,
+  },
 
 }
 </script>
