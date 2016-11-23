@@ -1,6 +1,6 @@
 <template>
   <div class="toolbar">
-    <button @click="togglePlayPause">{{ playStateText }}</button>
+    <button class="material-icons" @click="togglePlayPause">{{ playStateText }}</button>
   </div>
 </template>
 
@@ -11,7 +11,7 @@ export default {
 
   computed: {
     playStateText () {
-      return this.isPlaying ? 'Pause' : 'Play'
+      return this.isPlaying ? 'pause' : 'play_arrow'
     },
     ...mapGetters([
       'isPlaying',
