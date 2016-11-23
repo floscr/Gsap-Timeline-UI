@@ -38,6 +38,10 @@ const mutations = {
     timeline.progress(progress + skipAmount)
   },
 
+  [types.REWIND] (state) {
+    state.active.gsap.progress(0)
+  },
+
   [types.PAUSE] (state) {
     state.active.gsap.paused(true)
     state.active.isPlaying = false

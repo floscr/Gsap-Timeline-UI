@@ -40,6 +40,13 @@ export const skipForward = ({ commit, state }) => {
 /**
  * Skip backward by the skipBy amount set in options state
  */
+export const rewind = ({ commit }) => {
+  commit(types.REWIND)
+}
+
+/**
+ * Skip backward by the skipBy amount set in options state
+ */
 export const skipBackward = ({ commit, state }) => {
   commit(types.SKIP_BY, -state.options.skipBy)
 }
