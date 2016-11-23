@@ -98,9 +98,9 @@ export default {
   methods: {
 
     constrain (value, min, max, decimals) {
-      decimals = typeof decimals !== 'undefined' ? decimals : 0;
+      // decimals = typeof decimals !== 'undefined' ? decimals : 0;
       if (min !== undefined && max !== undefined) {
-        return round(Math.min(Math.max(parseFloat(value), min), max), decimals);
+        return round(Math.min(Math.max(parseFloat(value), min), max), 2);
       } else {
         return value;
       }
@@ -116,7 +116,7 @@ export default {
     },
 
     scrub (event) {
-      const progress = round(this.cursor.x / event.target.offsetWidth, 2)
+      const progress = round(this.cursor.x / event.target.offsetWidth, 3)
       this.setTimelineProgress(progress)
     },
 
