@@ -36,6 +36,14 @@
   background-color: $color-cursor;
 }
 
+.value {
+  position: fixed;
+  top: 0;
+  left: 0;
+  font-size: 2em;
+  color: green;
+}
+
 </style>
 
 <template>
@@ -43,11 +51,11 @@
     v-on:mousedown='handleMouseDown'
     class="container"
     >
+    <div>{{ value }}</div>
     <div
       class="track"
       v-bind:style="{ transform: trackScaleX }"
       >
-      {{ value }}
     </div>
     <div class="cursor"></div>
   </div>
@@ -61,21 +69,33 @@ export default {
 
   data () {
     return {
-      isMouseDown: false,
+      isisMouseDown: false,
       initialMouse: null,
-      value: 0
+      initialValue: 0,
+      steps: 1,
+      value: 0,
     }
-  },
-
-  mounted () {
-    this.elements.timeline.addEventListener('mouseover', () => { this.mouseIsOver = true; });
-    this.elements.timeline.addEventListener('mousemove', evt => { this.currentX = evt.clientX; });
   },
 
   methods: {
 
+    // method to round a number to given decimals
+    round (value, decimals) {
+      return Number(Math.round(value + 'e' + decimals) + 'e-' + decimals);
+    },
+
+    constrain (value, min, max, decimals) {
+      decimals = typeof decimals !== 'undefined' ? decimals : 0;
+
+      if (min !== undefined && max !== undefined) {
+        return this.round(Math.min(Math.max(parseFloat(value), min), max), decimals);
+      } else {
+        return value;
+      }
+    },
+
     handleMouseDown (event) {
-      this.mousedown = true
+      this.isMouseDown = true
 
       // remember the initial mouse position when the scubbing started
       this.initialMouse = {
@@ -95,7 +115,7 @@ export default {
 
     handleMouseUp (event) {
       // disable scrubbing
-      this.mouseDown = false;
+      this.isMouseDown = false
 
       document.removeEventListener('mousemove', this.handleMouseMove)
       document.removeEventListener('mouseup', this.handleMouseUp)
@@ -104,11 +124,12 @@ export default {
 
     // the actual translation of mouse movement to value change…
     handleMouseMove (event) {
-      if (this.mouseDown) {
-        var newValue = this.initialValue + ((event.clientX - this.initialMouse.x) * this.steps)
+      if (this.isMouseDown) {
+        var newValue = (event.clientX) * this.steps
 
         // constrain the value to the min/max
-        this.value = this.constrain(newValue, this.min, this.max, this.decimals);
+        this.value = this.constrain(newValue, 0, event.target.offsetWidth, this.decimals);
+        console.log(this.value)
       }
     },
 
