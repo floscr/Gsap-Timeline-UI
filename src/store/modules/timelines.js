@@ -34,8 +34,7 @@ const mutations = {
   [types.SKIP_BY] (state, skipBy) {
     const timeline = state.active.gsap
     const progress = timeline.progress()
-    const duration = timeline.duration()
-    const skipAmount = duration * skipBy
+    const skipAmount = timeline.duration() * skipBy
     timeline.progress(progress + skipAmount)
   },
 
