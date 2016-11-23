@@ -26,9 +26,6 @@
   top: 0;
   right: 0;
   height: 100%;
-  &:hover {
-    opacity: 1;
-  }
 }
 
 .cursor {
@@ -98,16 +95,11 @@ export default {
 
   methods: {
 
-    // method to round a number to given decimals
-    round (value, decimals) {
-      return Number(Math.round(value + 'e' + decimals) + 'e-' + decimals);
-    },
-
     constrain (value, min, max, decimals) {
       decimals = typeof decimals !== 'undefined' ? decimals : 0;
 
       if (min !== undefined && max !== undefined) {
-        return this.round(Math.min(Math.max(parseFloat(value), min), max), decimals);
+        return round(Math.min(Math.max(parseFloat(value), min), max), decimals);
       } else {
         return value;
       }
