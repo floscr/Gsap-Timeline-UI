@@ -50,7 +50,7 @@
 
 <template>
   <div
-    v-on:mousedown='handleMouseDown'
+    v-on:mousedown='scrub'
     @mouseover="mouseOver = true"
     @mouseleave="mouseOver = false"
     class="container"
@@ -97,7 +97,6 @@ export default {
 
     constrain (value, min, max, decimals) {
       decimals = typeof decimals !== 'undefined' ? decimals : 0;
-
       if (min !== undefined && max !== undefined) {
         return round(Math.min(Math.max(parseFloat(value), min), max), decimals);
       } else {
@@ -105,29 +104,8 @@ export default {
       }
     },
 
-    handleMouseDown (event) {
-      this.isMouseDown = true
+    scrub (event) {
 
-      // remember the initial mouse position when the scubbing started
-      this.initialMouse = {
-        x: event.clientX,
-        y: event.clientY
-      }
-
-      // remember the initial value
-      this.initialValue = this.value;
-
-      // register global event handlers because now we are not bound to the component anymore
-
-      // global mouse up listener
-      document.addEventListener('mouseup', this.handleMouseUp)
-    },
-
-    handleMouseUp (event) {
-      // disable scrubbing
-      this.isMouseDown = false
-
-      document.removeEventListener('mouseup', this.handleMouseUp)
     },
 
     // the actual translation of mouse movement to value change…
