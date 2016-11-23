@@ -3,6 +3,7 @@ import * as types from '../mutation-types'
 const state = {
   active: {
     gsap: undefined,
+    isPlaying: true,
     progress: 0,
     duration: 0,
   },
@@ -27,10 +28,27 @@ const mutations = {
 
   [types.PLAY] (state) {
     state.active.gsap.paused(false)
+    state.active.isPlaying = true
+  },
+
+  [types.SKIP_BY] (state, skipBy) {
+    const timeline = state.active.gsap
+    const progress = timeline.progress()
+    const skipAmount = timeline.duration() * skipBy
+    timeline.progress(progress + skipAmount)
+  },
+
+  [types.REWIND] (state) {
+    state.active.gsap.progress(0)
   },
 
   [types.PAUSE] (state) {
     state.active.gsap.paused(true)
+    state.active.isPlaying = false
+  },
+
+  [types.SET_PROGRESS] (state, progress) {
+    state.active.gsap.progress(progress)
   },
 
 }

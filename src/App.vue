@@ -12,25 +12,32 @@
   background: $color-ui-bg;
   font-size: 0.8em;
 
-  ::selection,
-  ::moz-selection {
-    background: $color-selection;
-  }
 }
 </style>
 
+<style>
+  .gsapui {
+    ::selection,
+    ::moz-selection {
+      background: $color-selection;
+    }
+  }
+</style>
+
 <template>
-  <div class="container" id="gsapui">
-    <div class="duration">{{ niceProgress }} / {{ duration }}</div>
-    <button @click="togglePlayPause">PlayPause</button>
+  <div class="gsapui container" id="gsapui">
     <timeline-track></timeline-track>
+    <toolbar></toolbar>
   </div>
 </template>
 
 <script>
 import Mousetrap from 'mousetrap'
+
 import { mapGetters, mapActions } from 'vuex'
+
 import Track from './components/Track.vue'
+import Toolbar from './components/Toolbar.vue'
 
 export default {
   name: 'GsapUi',
@@ -39,26 +46,28 @@ export default {
     this.setupShortcuts()
   },
 
-  computed: {
-    ...mapGetters([
-      'duration',
-      'niceProgress',
-      'activeTimeline'
-    ]),
-  },
-
   methods: {
     setupShortcuts () {
-      Mousetrap.bind('space', () => { this.togglePlayPause() })
+      Mousetrap.bind('space', event => {
+        // When a toolbar button was clicked, the focus stays on the element
+        // So we prevent triggering the playPause AND the button action
+        event.preventDefault()
+        this.togglePlayPause()
+      })
+      Mousetrap.bind('right', () => { this.skipForward() })
+      Mousetrap.bind('left', () => { this.skipBackward() })
     },
 
     ...mapActions([
-      'togglePlayPause'
+      'togglePlayPause',
+      'skipForward',
+      'skipBackward',
     ]),
   },
 
   components: {
     'timeline-track': Track,
+    Toolbar,
   },
 
 }

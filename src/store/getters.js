@@ -11,4 +11,8 @@ export const progress = state => {
   return state.timelines.active.progress
 }
 
+export const isPlaying = state => {
+  return state.timelines.active.isPlaying
+}
+
 export const niceProgress = state => round(state.timelines.active.progress, 2)
