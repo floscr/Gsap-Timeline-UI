@@ -1,7 +1,7 @@
 import * as types from '../mutation-types'
 
 const state = {
-  skipBy: 0.2,
+  skipBy: 0.01,
 }
 
 const mutations = {
