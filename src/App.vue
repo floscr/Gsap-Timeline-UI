@@ -46,14 +46,6 @@ export default {
     this.setupShortcuts()
   },
 
-  computed: {
-    ...mapGetters([
-      'duration',
-      'niceProgress',
-      'activeTimeline'
-    ]),
-  },
-
   methods: {
     setupShortcuts () {
       Mousetrap.bind('space', () => { this.togglePlayPause() })
