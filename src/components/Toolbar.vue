@@ -1,7 +1,7 @@
 <template>
   <div class="toolbar">
     <div class="duration">{{ niceProgress }} / {{ duration }}</div>
-    <button @click="togglePlayPause">PlayPause</button>
+    <button @click="togglePlayPause">{{ playStateText }}</button>
   </div>
 </template>
 
@@ -11,7 +11,11 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
 
   computed: {
+    playStateText () {
+      return this.isPlaying ? 'Pause' : 'Play'
+    },
     ...mapGetters([
+      'isPlaying',
       'duration',
       'niceProgress',
       'activeTimeline'
