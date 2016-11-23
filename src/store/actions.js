@@ -14,3 +14,7 @@ export const togglePlayPause = ({ commit, state }) => {
     commit(types.PAUSE)
   }
 }
+
+export const setTimelineProgress = ({ commit, state }, progress) => {
+  commit(types.SET_PROGRESS, progress)
+}

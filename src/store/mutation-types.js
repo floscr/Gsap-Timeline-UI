@@ -4,3 +4,4 @@ export const SUBSCRIBE = 'SUBSCRIBE'
 
 export const PLAY = 'PLAY'
 export const PAUSE = 'PAUSE'
+export const SET_PROGRESS = 'SET_PROGRESS'

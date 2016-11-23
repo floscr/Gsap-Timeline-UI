@@ -50,7 +50,8 @@
 
 <template>
   <div
-    v-on:mousedown='scrub'
+    @mousedown='mouseDown = true'
+    @mouseup='mouseDown = false'
     @mouseover="mouseOver = true"
     @mouseleave="mouseOver = false"
     class="container"
@@ -70,7 +71,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import round from 'lodash/round'
 
 export default {
@@ -81,6 +82,7 @@ export default {
         x: 0,
       },
       mouseOver: false,
+      mouseDown: false,
       isisMouseDown: false,
       initialMouse: null,
       initialValue: 0,
@@ -105,7 +107,8 @@ export default {
     },
 
     scrub (event) {
-
+      const progress = round(this.cursor.x / event.target.offsetWidth, 2)
+      this.setTimelineProgress(progress)
     },
 
     // the actual translation of mouse movement to value change…
@@ -113,8 +116,15 @@ export default {
       const mouseX = this.constrain(event.clientX, 0, event.target.offsetWidth, this.decimals);
       if (this.mouseOver) {
         this.cursor.x = mouseX
+        if (this.mouseDown) {
+          this.scrub(event)
+        }
       }
     },
+
+    ...mapActions([
+      'setTimelineProgress',
+    ]),
 
   },
 

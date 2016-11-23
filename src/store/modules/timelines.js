@@ -33,6 +33,10 @@ const mutations = {
     state.active.gsap.paused(true)
   },
 
+  [types.SET_PROGRESS] (state, progress) {
+    state.active.gsap.progress(progress)
+  },
+
 }
 
 export default {
