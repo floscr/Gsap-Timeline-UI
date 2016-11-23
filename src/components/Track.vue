@@ -50,8 +50,8 @@
 
 <template>
   <div
-    @mousedown='mouseDown = true'
-    @mouseup='mouseDown = false'
+    @mousedown='startScrubbing'
+    @mouseup='stopScrubbing'
     @mouseover="mouseOver = true"
     @mouseleave="mouseOver = false"
     class="container"
@@ -104,6 +104,15 @@ export default {
       } else {
         return value;
       }
+    },
+
+    startScrubbing (event) {
+      this.scrub(event)
+      this.mouseDown = true
+    },
+
+    stopScrubbing (event) {
+      this.mouseDown = false
     },
 
     scrub (event) {
