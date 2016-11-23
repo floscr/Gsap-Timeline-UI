@@ -12,15 +12,21 @@
   background: $color-ui-bg;
   font-size: 0.8em;
 
-  ::selection,
-  ::moz-selection {
-    background: $color-selection;
-  }
 }
 </style>
 
+<style>
+  .gsapui {
+    cursor: default;
+    ::selection,
+    ::moz-selection {
+      background: $color-selection;
+    }
+  }
+</style>
+
 <template>
-  <div class="container" id="gsapui">
+  <div class="gsapui container" id="gsapui">
     <div class="duration">{{ niceProgress }} / {{ duration }}</div>
     <button @click="togglePlayPause">PlayPause</button>
     <timeline-track></timeline-track>
