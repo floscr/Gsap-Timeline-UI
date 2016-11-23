@@ -26,16 +26,18 @@
 
 <template>
   <div class="gsapui container" id="gsapui">
-    <div class="duration">{{ niceProgress }} / {{ duration }}</div>
-    <button @click="togglePlayPause">PlayPause</button>
+    <toolbar></toolbar>
     <timeline-track></timeline-track>
   </div>
 </template>
 
 <script>
 import Mousetrap from 'mousetrap'
+
 import { mapGetters, mapActions } from 'vuex'
+
 import Track from './components/Track.vue'
+import Toolbar from './components/Toolbar.vue'
 
 export default {
   name: 'GsapUi',
@@ -64,6 +66,7 @@ export default {
 
   components: {
     'timeline-track': Track,
+    Toolbar,
   },
 
 }
