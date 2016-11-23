@@ -53,6 +53,7 @@
     @mousedown='startScrubbing'
     @mouseover="mouseOver = true"
     @mouseleave="mouseOver = false"
+    v-bind:style="{ cursor: mouseDown ? 'col-resize' : 'default' }"
     class="container"
     >
     <div>{{ value }}</div>
@@ -87,6 +88,7 @@ export default {
       initialValue: 0,
       steps: 1,
       value: 0,
+      timelineElement: undefined,
     }
   },
 
@@ -117,14 +119,16 @@ export default {
     },
 
     scrub (event) {
-      const progress = round(this.cursor.x / event.target.offsetWidth, 3)
+      const progress = round(this.cursor.x / this.$el.offsetWidth, 3)
       this.setTimelineProgress(progress)
     },
 
     // the actual translation of mouse movement to value change…
     handleMouseMove (event) {
-      const mouseX = this.constrain(event.clientX, 0, event.target.offsetWidth, this.decimals);
-      this.cursor.x = mouseX
+      const mouseX = this.constrain(event.clientX, 0, this.$el.offsetWidth, this.decimals);
+      if (this.mouseDown || this.mouseOver) {
+        this.cursor.x = mouseX
+      }
       if (this.mouseDown) {
         this.scrub(event)
       }
