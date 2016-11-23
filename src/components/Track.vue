@@ -32,7 +32,12 @@
 }
 
 .cursor {
-  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
   background-color: $color-cursor;
 }
 
@@ -49,6 +54,8 @@
 <template>
   <div
     v-on:mousedown='handleMouseDown'
+    @mouseover="mouseOver = true"
+    @mouseleave="mouseOver = false"
     class="container"
     >
     <div>{{ value }}</div>
@@ -57,7 +64,11 @@
       v-bind:style="{ transform: trackScaleX }"
       >
     </div>
-    <div class="cursor"></div>
+    <div
+    class="cursor"
+    v-bind:style="{ transform: cursorX, opacity: mouseOver ? 1 : 0 }"
+    >
+    </div>
   </div>
 </template>
 
@@ -69,12 +80,20 @@ export default {
 
   data () {
     return {
+      cursor: {
+        x: 0,
+      },
+      mouseOver: false,
       isisMouseDown: false,
       initialMouse: null,
       initialValue: 0,
       steps: 1,
       value: 0,
     }
+  },
+
+  mounted () {
+    document.addEventListener('mousemove', this.handleMouseMove)
   },
 
   methods: {
@@ -107,7 +126,6 @@ export default {
       this.initialValue = this.value;
 
       // register global event handlers because now we are not bound to the component anymore
-      document.addEventListener('mousemove', this.handleMouseMove)
 
       // global mouse up listener
       document.addEventListener('mouseup', this.handleMouseUp)
@@ -117,28 +135,28 @@ export default {
       // disable scrubbing
       this.isMouseDown = false
 
-      document.removeEventListener('mousemove', this.handleMouseMove)
       document.removeEventListener('mouseup', this.handleMouseUp)
     },
 
-
     // the actual translation of mouse movement to value change…
     handleMouseMove (event) {
-      if (this.isMouseDown) {
-        var newValue = (event.clientX) * this.steps
-
-        // constrain the value to the min/max
-        this.value = this.constrain(newValue, 0, event.target.offsetWidth, this.decimals);
-        console.log(this.value)
+      const mouseX = this.constrain(event.clientX, 0, event.target.offsetWidth, this.decimals);
+      if (this.mouseOver) {
+        this.cursor.x = mouseX
       }
     },
 
   },
 
   computed: {
+    cursorX () {
+      return `translateX(${this.cursor.x}px)`
+    },
+
     trackScaleX () {
       return `scaleX(${round(this.progress, 3)})`
     },
+
     ...mapGetters([
       'duration',
       'progress',
