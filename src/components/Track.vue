@@ -38,14 +38,6 @@
   background-color: $color-cursor;
 }
 
-.value {
-  position: fixed;
-  top: 0;
-  left: 0;
-  font-size: 2em;
-  color: green;
-}
-
 </style>
 
 <template>
@@ -55,7 +47,6 @@
     @mouseleave="mouseOver = false"
     class="container"
     >
-    <div>{{ value }}</div>
     <div
       class="track"
       v-bind:style="{ transform: trackScaleX }"
