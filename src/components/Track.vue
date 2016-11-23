@@ -51,7 +51,6 @@
 <template>
   <div
     @mousedown='startScrubbing'
-    @mouseup='stopScrubbing'
     @mouseover="mouseOver = true"
     @mouseleave="mouseOver = false"
     class="container"
@@ -108,11 +107,13 @@ export default {
 
     startScrubbing (event) {
       this.scrub(event)
+      document.addEventListener('mouseup', this.stopScrubbing)
       this.mouseDown = true
     },
 
     stopScrubbing (event) {
       this.mouseDown = false
+      document.removeEventListener('mouseup', this.stopScrubbing)
     },
 
     scrub (event) {
@@ -123,11 +124,9 @@ export default {
     // the actual translation of mouse movement to value change…
     handleMouseMove (event) {
       const mouseX = this.constrain(event.clientX, 0, event.target.offsetWidth, this.decimals);
-      if (this.mouseOver) {
-        this.cursor.x = mouseX
-        if (this.mouseDown) {
-          this.scrub(event)
-        }
+      this.cursor.x = mouseX
+      if (this.mouseDown) {
+        this.scrub(event)
       }
     },
 
