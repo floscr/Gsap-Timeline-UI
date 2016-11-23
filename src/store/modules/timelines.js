@@ -31,6 +31,14 @@ const mutations = {
     state.active.isPlaying = true
   },
 
+  [types.SKIP_BY] (state, skipBy) {
+    const timeline = state.active.gsap
+    const progress = timeline.progress()
+    const duration = timeline.duration()
+    const skipAmount = duration * skipBy
+    timeline.progress(progress + skipAmount)
+  },
+
   [types.PAUSE] (state) {
     state.active.gsap.paused(true)
     state.active.isPlaying = false

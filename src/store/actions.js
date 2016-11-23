@@ -29,3 +29,17 @@ export const togglePlayPause = ({ commit, state }) => {
 export const setTimelineProgress = ({ commit, state }, progress) => {
   commit(types.SET_PROGRESS, progress)
 }
+
+/**
+ * Skip forward by the skipBy amount set in options state
+ */
+export const skipForward = ({ commit, state }) => {
+  commit(types.SKIP_BY, state.options.skipBy)
+}
+
+/**
+ * Skip backward by the skipBy amount set in options state
+ */
+export const skipBackward = ({ commit, state }) => {
+  commit(types.SKIP_BY, -state.options.skipBy)
+}

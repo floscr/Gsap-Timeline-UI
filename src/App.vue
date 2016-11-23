@@ -26,8 +26,8 @@
 
 <template>
   <div class="gsapui container" id="gsapui">
-    <toolbar></toolbar>
     <timeline-track></timeline-track>
+    <toolbar></toolbar>
   </div>
 </template>
 
@@ -49,10 +49,14 @@ export default {
   methods: {
     setupShortcuts () {
       Mousetrap.bind('space', () => { this.togglePlayPause() })
+      Mousetrap.bind('right', () => { this.skipForward() })
+      Mousetrap.bind('left', () => { this.skipBackward() })
     },
 
     ...mapActions([
-      'togglePlayPause'
+      'togglePlayPause',
+      'skipForward',
+      'skipBackward',
     ]),
   },
 
