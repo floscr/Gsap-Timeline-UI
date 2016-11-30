@@ -54,8 +54,8 @@ export default {
         event.preventDefault()
         this.togglePlayPause()
       })
-      Mousetrap.bind('right', () => { this.skipForward() })
-      Mousetrap.bind('left', () => { this.skipBackward() })
+      Mousetrap.bind('right', this.skipForward)
+      Mousetrap.bind('left', this.skipBackward)
     },
 
     ...mapActions([
