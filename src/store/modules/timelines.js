@@ -1,9 +1,15 @@
 import * as types from '../mutation-types'
 
+import createPersist from 'vuex-localstorage'
+
+const persist = createPersist('gsap-timeline', {
+  isPlaying: true,
+})
+
 const state = {
   active: {
+    ...persist.get(),
     gsap: undefined,
-    isPlaying: true,
     progress: 0,
     duration: 0,
   },
@@ -14,6 +20,8 @@ const mutations = {
 
   [types.SET_ACTIVE_TIMELINE] (state, timeline) {
     state.active.gsap = timeline
+
+    state.active.gsap.paused(!state.active.isPlaying)
 
     // Subscribe to Gsap timeline changes
     timeline.eventCallback('onUpdate', () => {
@@ -29,6 +37,7 @@ const mutations = {
   [types.PLAY] (state) {
     state.active.gsap.paused(false)
     state.active.isPlaying = true
+    persist.set({ isPlaying: true })
   },
 
   [types.SKIP_BY] (state, skipBy) {
@@ -45,6 +54,7 @@ const mutations = {
   [types.PAUSE] (state) {
     state.active.gsap.paused(true)
     state.active.isPlaying = false
+    persist.set({ isPlaying: false })
   },
 
   [types.SET_PROGRESS] (state, progress) {

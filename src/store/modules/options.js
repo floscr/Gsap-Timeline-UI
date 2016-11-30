@@ -5,7 +5,9 @@ const persist = createPersist('gsap', {
   skipBy: 0.01,
 })
 
-const state = persist.get()
+const state = {
+  ...persist.get()
+}
 
 const mutations = {
   [types.SET_ENV]: (state, mutation) => {
