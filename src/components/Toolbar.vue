@@ -11,6 +11,7 @@
     <ui-button :click="skipBackward" text="fast_rewind"></ui-button>
     <ui-button :click="togglePlayPause" :text="isPlaying ? 'pause' :'play_arrow'"></ui-button>
     <ui-button :click="skipForward" text="fast_forward"></ui-button>
+    <ui-button :click="setRandomOption" text="stars"></ui-button>
   </div>
 </template>
 
@@ -28,7 +29,13 @@ export default {
   },
 
   methods: {
+    setRandomOption () {
+      this.setOption({
+        skipBy: 2,
+      })
+    },
     ...mapActions([
+      'setOption',
       'togglePlayPause',
       'skipForward',
       'skipBackward',

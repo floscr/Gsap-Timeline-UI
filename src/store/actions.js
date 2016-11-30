@@ -3,6 +3,13 @@ import * as types from './mutation-types'
 import Vue from 'vue'
 
 /**
+ * Set an option
+ */
+export const setOption = ({ commit, state }, options) => {
+  commit(types.SET_ENV, options)
+}
+
+/**
  * Add timeline to the store and set is active
  * @param {obj} timeline Gsap Timeline Object
  */

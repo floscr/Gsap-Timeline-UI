@@ -7,3 +7,6 @@ export const PAUSE = 'PAUSE'
 export const SET_PROGRESS = 'SET_PROGRESS'
 export const SKIP_BY = 'SKIP_BY'
 export const REWIND = 'REWIND'
+
+export const ENV_KEY = 'GsapUi'
+export const SET_ENV = 'SET_ENV'
