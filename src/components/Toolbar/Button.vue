@@ -12,7 +12,7 @@
   outline: none;
 
   &--is-active {
-    color: $color-icon;
+    color: $color-icon-active;
     background-color: rgba(white, 0.05);
   }
 
