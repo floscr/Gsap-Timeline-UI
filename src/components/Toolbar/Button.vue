@@ -11,6 +11,11 @@
   color: $color-ui-font-color;
   outline: none;
 
+  &__active {
+    color: desaturate(lighten(#03A9F4, 20%), 5%);
+    background-color: rgba(white, 0.05);
+  }
+
   &:hover {
     background-color: $color-ui-btn-hover;
     cursor: pointer;
@@ -24,16 +29,20 @@
 </style>
 
 <template>
-  <button @click="click" class="button material-icons">{{ text }}</button>
+  <button
+    @click="click"
+    :class="{ 'button__active': active }"
+    class="button material-icons">
+    {{ text }}
+  </button>
 </template>
 
 <script>
 export default {
-
   props: [
+    'active',
     'click',
     'text',
   ],
-
 }
 </script>
