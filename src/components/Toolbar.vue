@@ -7,11 +7,18 @@
 
 <template>
   <div class="toolbar">
+
     <ui-button :click="rewind" text="skip_previous"></ui-button>
     <ui-button :click="skipBackward" text="fast_rewind"></ui-button>
     <ui-button :click="togglePlayPause" :text="isPlaying ? 'pause' :'play_arrow'"></ui-button>
     <ui-button :click="skipForward" text="fast_forward"></ui-button>
-    <ui-button :click="setRandomOption" text="stars"></ui-button>
+
+    <ui-button
+      :click="toggleRestoreTimelineOption"
+      :active="restoreTimelineIsEnabled"
+      text="restore">
+    </ui-button>
+
   </div>
 </template>
 
@@ -24,18 +31,17 @@ export default {
 
   computed: {
     ...mapGetters([
+      'restoreTimelineIsEnabled',
       'isPlaying',
     ]),
   },
 
   methods: {
-    setRandomOption () {
-      this.setOption({
-        skipBy: 2,
-      })
-    },
     ...mapActions([
-      'setOption',
+      // Option Actions
+      'toggleRestoreTimelineOption',
+
+      // Timeline Actions
       'togglePlayPause',
       'skipForward',
       'skipBackward',

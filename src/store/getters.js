@@ -5,6 +5,10 @@ import Vue from 'vue'
 
 export const activeTimeline = state => state.timelines.active
 
+export const restoreTimelineIsEnabled = state => {
+  return state.options.restoreTimeline
+}
+
 export const duration = state => state.timelines.active.duration
 
 export const progress = state => {

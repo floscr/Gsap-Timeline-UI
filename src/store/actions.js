@@ -4,9 +4,18 @@ import Vue from 'vue'
 
 /**
  * Set an option
+ * @param {obj} options Options to update
  */
 export const setOption = ({ commit, state }, options) => {
   commit(types.SET_ENV, options)
+}
+
+/**
+ * Toggle the restore Timeline option
+ */
+export const toggleRestoreTimelineOption = ({ commit, state }) => {
+  const restoreTimeline = !state.options.restoreTimeline
+  commit(types.SET_ENV, { restoreTimeline })
 }
 
 /**
