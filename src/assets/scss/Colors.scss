@@ -18,6 +18,7 @@ $bluegrey-15: #99A2AE;
 $bluegrey-70: #2E3840;
 $bluegrey-90: #222C33;
 
+$maya-blue: #64CBF9;
 $turquoise: #7AC5C7;
 
 // ----------------------------------------------------------------------------
@@ -36,3 +37,5 @@ $color-ui-btn-focus: rgba($bluegrey-10, 0.33);
 
 $color-timeline-track-bg: darken($color-ui-bg, 3%);
 $color-timeline-track: saturate(lighten($bluegrey-10, 0.10%), 10%);
+
+$color-icon-active: $maya-blue;
