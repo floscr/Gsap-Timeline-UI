@@ -11,8 +11,8 @@
   color: $color-ui-font-color;
   outline: none;
 
-  &__active {
-    color: desaturate(lighten(#03A9F4, 20%), 5%);
+  &--is-active {
+    color: $color-icon;
     background-color: rgba(white, 0.05);
   }
 
@@ -31,7 +31,7 @@
 <template>
   <button
     @click="click"
-    :class="{ 'button__active': active }"
+    :class="{ 'button--is-active': active }"
     class="button material-icons">
     {{ text }}
   </button>
