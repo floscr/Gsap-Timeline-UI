@@ -4,13 +4,13 @@ import createPersist from 'vuex-localstorage'
 
 const persist = createPersist('gsap-timeline', {
   isPlaying: true,
+  progress: 0,
 })
 
 const state = {
   active: {
     ...persist.get(),
     gsap: undefined,
-    progress: 0,
     duration: 0,
   },
   all: [],
