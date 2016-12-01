@@ -39,10 +39,13 @@
 
 <script>
 export default {
-  props: [
-    'active',
-    'click',
-    'text',
-  ],
+  props: {
+    click: {
+      type: Function,
+      required: true,
+    },
+    active: Boolean,
+    text: String,
+  },
 }
 </script>
