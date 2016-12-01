@@ -22,9 +22,12 @@ export const toggleRestoreTimelineOption = ({ commit, state }) => {
  * Add timeline to the store and set is active
  * @param {obj} timeline Gsap Timeline Object
  */
-export const addTimeline = ({ commit, state }, timeline) => {
+export const addTimeline = ({ commit, state, rootState }, timeline) => {
   commit(types.ADD_TIMELINE, timeline)
-  commit(types.SET_ACTIVE_TIMELINE, timeline)
+  commit(types.SET_ACTIVE_TIMELINE, {
+    timeline,
+    rootState
+  })
 }
 
 /**

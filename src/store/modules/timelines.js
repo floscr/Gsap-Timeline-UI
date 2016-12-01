@@ -14,20 +14,32 @@ const state = {
     duration: 0,
   },
   all: [],
+  options: {},
 }
 
 const mutations = {
 
-  [types.SET_ACTIVE_TIMELINE] (state, timeline) {
+  [types.SET_ACTIVE_TIMELINE] (state, payload) {
+
+    const { timeline, rootState } = payload
+    const restoreTimeline = rootState.options.restoreTimeline
+
     state.active.gsap = timeline
 
-    state.active.gsap.paused(!state.active.isPlaying)
+    if (restoreTimeline) {
+      timeline.progress(state.active.progress)
+      state.active.gsap.paused(!state.active.isPlaying)
+    }
 
     // Subscribe to Gsap timeline changes
     timeline.eventCallback('onUpdate', () => {
       state.active.progress = timeline.progress()
+      if (restoreTimeline) {
+        persist.set({ progress: state.active.progress })
+      }
       state.active.duration = timeline.duration()
     })
+
   },
 
   [types.ADD_TIMELINE] (state, timeline) {
